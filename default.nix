@@ -10,7 +10,10 @@ let
       rev = "87654b4654b134e4ce3f1f9887e90a5d917d53a3";
       hash = "sha256-pwcj1DQDdTMpZqEhcdDYZBNS8X6sLwKpxzKlmgvkBO8=";
     };
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = [ "unpackPhase" "patchPhase" "installPhase" ];
+    patches = [
+      ./footprints/seeed_xiao.patch
+    ];
     installPhase = "cp -r . $out";
   };
 
@@ -21,12 +24,12 @@ let
     installPhase = ''
       mkdir -p $out
       cp -v \
-        ${ergogen-footprints}/mcu_nice_nano.js \
         ${ergogen-footprints}/reset_switch_tht_top.js \
         ${ergogen-footprints}/switch_choc_v1_v2.js \
         ${ergogen-footprints}/trrs_pj320a.js \
         ${ergogen-footprints}/utility_ergogen_logo.js \
         ${ergogen-footprints}/utility_text.js \
+        ${ergogen-footprints}/backlog/virginia2244/seeed_xiao.js \
         $out/
     '';
   };

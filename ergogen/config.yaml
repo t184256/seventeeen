@@ -11,9 +11,11 @@ points:
             spread: 18
           rows:
             bottom:
-              column_net: P21
+              row_net: P10
+              column_net: P0
             home:
-              column_net: P20
+              row_net: P9
+              column_net: P0
         ring:
           key:
             spread: 18
@@ -21,27 +23,33 @@ points:
             stagger: 16
           rows:
             bottom:
-              column_net: P19
+              row_net: P10
+              column_net: P1
             home:
-              column_net: P18
+              row_net: P9
+              column_net: P1
         middle:
           key:
             spread: 18
             stagger: 5
           rows:
             bottom:
-              column_net: P15
+              row_net: P10
+              column_net: P2
             home:
-              column_net: P14
+              row_net: P9
+              column_net: P2
         index:
           key:
             spread: 18
             stagger: -6
           rows:
             bottom:
-              column_net: P26
+              column_net: P3
+              row_net: P10
             home:
-              column_net: P10
+              column_net: P3
+              row_net: P9
       rows:
         bottom:
           padding: 17
@@ -60,7 +68,8 @@ points:
           rows:
             home:
               rotate: -90
-              column_net: P8
+              column_net: P4
+              row_net: P8
 
         home:
           key:
@@ -69,7 +78,8 @@ points:
             origin: [0,0]
           rows:
             home:
-              column_net: P9
+              column_net: P5
+              row_net: P7
 
 outlines:
   plate:
@@ -120,8 +130,8 @@ pcbs:
         what: ceoloide/switch_choc_v1_v2
         where: true
         params:
-          from: GND
-          to: "{{column_net}}"
+          from: "{{column_net}}"
+          to: "{{colrow}}"
           include_keycap: true
           keycap_width: 17.5
           keycap_height: 16.5
@@ -129,14 +139,20 @@ pcbs:
           hotswap: false
           solder: true
           choc_v2_support: false
-      promicro:
-        what: ceoloide/mcu_nice_nano
+      seeed:
+        what: ceoloide/seeed_xiao
         where: matrix_index_home
         params:
-          reverse_mount: true
-          reversible: true
-          only_required_jumpers: true
+          reversable: true
         adjust.shift: [0.95u, -0.5u]
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
         where: matrix_middle_bottom

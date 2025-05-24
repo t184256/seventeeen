@@ -1,0 +1,44 @@
+diff --git a/backlog/virginia2244/seeed_xiao.js b/backlog/virginia2244/seeed_xiao.js
+index 912ea0b..003ccf1 100644
+--- a/backlog/virginia2244/seeed_xiao.js
++++ b/backlog/virginia2244/seeed_xiao.js
+@@ -312,10 +312,6 @@ ${'' /*Box outlining the front body*/}
+ (fp_line (start -8.9 -8.5) (end -8.9 8.5) (layer "F.SilkS") (width 0.127))
+ (fp_line (start 6.9 -10.5) (end -6.9 -10.5) (layer "F.SilkS") (width 0.127))
+ (fp_line (start -6.9 10.5) (end 6.9 10.5) (layer "F.SilkS") (width 0.127))
+-(fp_arc (start 6.9 8.5)   (end 6.9 10.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-(fp_arc (start 6.9 -8.5) (end 8.9 -8.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-(fp_arc (start -6.9 8.5) (end -8.9 8.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-(fp_arc (start -6.9 -8.5) (end -6.9 -10.5) (angle -90) (layer "F.SilkS") (width 0.127))
+ 
+ ${'' /*Getting the through holes*/}
+ ${get_thru_hole()}
+@@ -339,10 +335,6 @@ footprint "xiao-ble-tht" (generator pcbnew)
+   (fp_line (start -8.9 -8.5) (end -8.9 8.5) (layer "F.SilkS") (width 0.127))
+   (fp_line (start 6.9 -10.5) (end -6.9 -10.5) (layer "F.SilkS") (width 0.127))
+   (fp_line (start -6.9 10.5) (end 6.9 10.5) (layer "F.SilkS") (width 0.127))
+-  (fp_arc (start 6.9 8.5)   (end 6.9 10.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-  (fp_arc (start 6.9 -8.5) (end 8.9 -8.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-  (fp_arc (start -6.9 8.5) (end -8.9 8.5) (angle -90) (layer "F.SilkS") (width 0.127))
+-  (fp_arc (start -6.9 -8.5) (end -6.9 -10.5) (angle -90) (layer "F.SilkS") (width 0.127))
+ 
+   ${'' /*Box outlining the back usb-c port*/}
+   (fp_rect (start 4.5 -4.5) (end -4.5 -11.92403) (layer "B.SilkS") (width 0.127) (fill none))
+@@ -352,10 +344,6 @@ footprint "xiao-ble-tht" (generator pcbnew)
+   (fp_line (start -8.9 -8.5) (end -8.9 8.5)   (layer "B.SilkS") (width 0.127))
+   (fp_line (start 6.9 -10.5) (end -6.9 -10.5) (layer "B.SilkS") (width 0.127))
+   (fp_line (start -6.9 10.5) (end 6.9 10.5)   (layer "B.SilkS") (width 0.127))
+-  (fp_arc  (start 6.9 8.5)   (end 6.9 10.5)   (angle -90) (layer "B.SilkS") (width 0.127))
+-  (fp_arc  (start 6.9 -8.5)  (end 8.9 -8.5)   (angle -90) (layer "B.SilkS") (width 0.127))
+-  (fp_arc  (start -6.9 8.5)  (end -8.9 8.5)   (angle -90) (layer "B.SilkS") (width 0.127))
+-  (fp_arc  (start -6.9 -8.5) (end -6.9 -10.5) (angle -90) (layer "B.SilkS") (width 0.127))
+ 
+   ${'' /*Getting the through holes and the solder pads*/}
+   ${get_solder_pads()}      
+@@ -372,4 +360,4 @@ footprint "xiao-ble-tht" (generator pcbnew)
+       ${p.traces ? (p.reversable ? get_traces() : '') : ''}
+     `
+   }
+-}
+\ No newline at end of file
++}

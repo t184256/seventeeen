@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, ergogen, fetchFromGitHub }:
+{ lib, stdenvNoCC, ergogen, kicad, fetchFromGitHub }:
 
 let
   ergogen-footprints = stdenvNoCC.mkDerivation {
@@ -45,8 +45,16 @@ stdenvNoCC.mkDerivation {
   buildPhase = ''
     mkdir -p ergogen/footprints
     cp -rv ${ergogen-select-footprints} ergogen/footprints/ceoloide
-    find
     ${ergogen}/bin/ergogen ergogen/ -o $out
+    mkdir $out/previews tmp
+    find $out
+    HOME=$(realpath tmp) \
+      ${kicad}/bin/kicad-cli pcb export svg \
+        --output $out/previews/seventeeen.svg \
+        $out/pcbs/seventeeen.kicad_pcb \
+        --exclude-drawing-sheet \
+        --fit-page-to-board \
+        -l F.Cu,B.Cu,F.Paste,B.Paste,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts
   '';
 
   meta = {

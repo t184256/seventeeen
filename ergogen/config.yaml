@@ -1,64 +1,130 @@
 meta:
   engine: 4.1.0
+
+units:
+  u: 17
+  cx: 17
+  cy: 17
+  default_spread: 17
+
 points:
   zones:
     matrix:
-      anchor:
-        shift: [50,-75] # Fix KiCad placement
+      # anchor:
+      #    shift: [50,-75] # Fix KiCad placement ???
       columns:
+        outer:
+          key:
+            stagger: 0
+          rows:
+            bottom:
+              row_net: P10
+              column_net: P0
+              skip: true
+            home:
+              row_net: P9
+              column_net: P0
+            top:
+              row_net: P8
+              column_net: P0
+            num:
+              row_net: P7
+              column_net: P0
+              skip: true
         pinky:
           key:
-            spread: 18
+            stagger: 0
           rows:
             bottom:
               row_net: P10
-              column_net: P0
+              column_net: P1
             home:
               row_net: P9
-              column_net: P0
+              column_net: P1
+            top:
+              row_net: P8
+              column_net: P1
+            num:
+              row_net: P7
+              column_net: P1
         ring:
           key:
-            spread: 18
             origin: [-12, -19]
-            stagger: 16
+            stagger: 8
           rows:
             bottom:
               row_net: P10
-              column_net: P1
+              column_net: P2
             home:
               row_net: P9
-              column_net: P1
+              column_net: P2
+            top:
+              row_net: P8
+              column_net: P2
+            num:
+              row_net: P7
+              column_net: P2
         middle:
           key:
-            spread: 18
-            stagger: 5
+            stagger: 2
           rows:
             bottom:
               row_net: P10
-              column_net: P2
+              column_net: P3
             home:
               row_net: P9
-              column_net: P2
+              column_net: P3
+            top:
+              row_net: P8
+              column_net: P3
+            num:
+              row_net: P7
+              column_net: P3
         index:
           key:
-            spread: 18
-            stagger: -6
+            stagger: -8
           rows:
             bottom:
-              column_net: P3
+              row_net: P10
+              column_net: P4
+            home:
+              row_net: P9
+              column_net: P4
+            top:
+              row_net: P8
+              column_net: P4
+            num:
+              row_net: P7
+              column_net: P4
+        inner:
+          key:
+            stagger: 0
+          rows:
+            bottom:
+              column_net: P5
               row_net: P10
             home:
-              column_net: P3
+              column_net: P5
               row_net: P9
+            top:
+              row_net: P8
+              column_net: P5
+            num:
+              row_net: P7
+              column_net: P5
       rows:
         bottom:
-          padding: 17
+          padding: 1cx
         home:
-          padding: 17
+          padding: 1cx
+        top:
+          padding: 1cx
+        num:
+          padding: 1cx
     thumb:
       anchor:
         ref: matrix_index_bottom
-        shift: [25, -40]
+        shift: [17, -21]
       columns:
         home:
           key:
@@ -66,46 +132,35 @@ points:
             origin: [0,0]
           rows:
             home:
-              column_net: P5
+              column_net: P6
               row_net: P7
 
 outlines:
-  plate:
-    - what: rectangle
-      where: true
-      asym: source
-      size: 18
-      corner: 3
-    - what: rectangle
-      where: true
-      asym: source
-      size: 14
-      bound: false
-      operation: subtract
   _pcb_perimeter_raw:
     - what: rectangle
       where: true
       asym: source
-      size: 18
+      size: 17
       corner: 1
   _polygon:
     - what: polygon # all borders
       operation: stack
       points:
         - ref: thumb_home_home
-          shift: [10,-10]
+          shift: [9,-10]
         - ref: thumb_home_home
-          shift: [-90,-10]
+          shift: [-91,-10]
         - ref: thumb_home_home
-          shift: [-90,90]
+          shift: [-91,90]
         - ref: thumb_home_home
-          shift: [10,90]
+          shift: [9,90]
   pcb_perimeter:
-    - what: outline # keys
-      name: _pcb_perimeter_raw
     - what: outline
       name: _polygon
-      operation: add
+    # uncomment to see the overhang
+    #- what: outline # keys
+    #  name: _pcb_perimeter_raw
+    #  operation: add
 
 pcbs:
   seventeeen:
@@ -127,6 +182,8 @@ pcbs:
           hotswap: true
           solder: false
           choc_v2_support: false
+          #include_plated_holes: true
+        adjust.rotate: 270
       seeed:
         what: ceoloide/seeed_xiao
         where: matrix_pinky_bottom
@@ -141,20 +198,21 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [0, -3]
+          shift: [-3, 0]
+          rotate: 90
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
-        where: matrix_middle_bottom
+        where: matrix_index_num
         params:
-          text: JLCJLCJLCJLC
+          text: 'seventeeen v0.0\nJLCJLCJLCJLC'
           reversible: true
         adjust:
-          shift: [0,-u/2]
+          shift: [0,u/2+5]
       ergogen_logo:
         what: ceoloide/utility_ergogen_logo
-        where: matrix_middle_bottom
+        where: matrix_outer_bottom
         params:
           scale: 2.5
           reversible: true
         adjust:
-          shift: [0,-1.25u]
+          shift: [0,-1u]

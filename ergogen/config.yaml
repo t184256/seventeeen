@@ -118,7 +118,7 @@ outlines:
       operation: add
 
 pcbs:
-  tiny20:
+  seventeeen:
     template: kicad8
     outlines:
       main:

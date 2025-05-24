@@ -58,7 +58,7 @@ points:
     thumb:
       anchor:
         ref: matrix_index_bottom
-        shift: [25, -20]
+        shift: [25, -40]
       columns:
         home:
           key:
@@ -121,7 +121,7 @@ pcbs:
           from: "{{column_net}}"
           to: "{{colrow}}"
           include_keycap: true
-          keycap_width: 17.5
+          keycap_width: 16.5
           keycap_height: 16.5
           reversible: true
           hotswap: true
@@ -129,10 +129,11 @@ pcbs:
           choc_v2_support: false
       seeed:
         what: ceoloide/seeed_xiao
-        where: matrix_index_home
+        where: matrix_pinky_bottom
         params:
           reversable: true
-        adjust.shift: [1.25u, -0.5u]
+        adjust.shift: [18, -18]
+        adjust.rotate: 90
       diode:
         what: diode
         where: true
@@ -140,7 +141,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [0, -5]
+          shift: [0, -3]
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
         where: matrix_middle_bottom

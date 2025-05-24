@@ -4,7 +4,6 @@ points:
   zones:
     matrix:
       anchor:
-        rotate: 5
         shift: [50,-75] # Fix KiCad placement
       columns:
         pinky:
@@ -18,7 +17,6 @@ points:
         ring:
           key:
             spread: 18
-            splay: -5
             origin: [-12, -19]
             stagger: 16
           rows:

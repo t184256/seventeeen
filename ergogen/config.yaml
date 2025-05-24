@@ -137,18 +137,6 @@ pcbs:
           reversible: true
           only_required_jumpers: true
         adjust.shift: [0.95u, -0.5u]
-      trrs:
-        what: ceoloide/trrs_pj320a
-        where:
-          ref: matrix_pinky_home
-          shift: [0, 1.2u]
-          rotate: 0
-        params:
-          SL: GND
-          R2: P1
-          TP: VCC # Tip and Ring 1 are joined togetherue
-          symmetric: true
-          reversible: true
       reset:
         what: ceoloide/reset_switch_tht_top
         where: matrix_ring_home

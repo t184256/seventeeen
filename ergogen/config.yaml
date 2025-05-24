@@ -124,15 +124,15 @@ pcbs:
           keycap_width: 17.5
           keycap_height: 16.5
           reversible: true
-          hotswap: false
-          solder: true
+          hotswap: true
+          solder: false
           choc_v2_support: false
       seeed:
         what: ceoloide/seeed_xiao
         where: matrix_index_home
         params:
           reversable: true
-        adjust.shift: [0.95u, -0.5u]
+        adjust.shift: [1.25u, -0.5u]
       diode:
         what: diode
         where: true

@@ -137,16 +137,6 @@ pcbs:
           reversible: true
           only_required_jumpers: true
         adjust.shift: [0.95u, -0.5u]
-      reset:
-        what: ceoloide/reset_switch_tht_top
-        where: matrix_ring_home
-        params:
-          from: RST
-          to: GND
-          reversible: true
-        adjust:
-          shift: [-0.7u, 0]
-          rotate: 90
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
         where: matrix_middle_bottom

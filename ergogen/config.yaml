@@ -18,17 +18,17 @@ points:
             stagger: 0
           rows:
             bottom:
-              row_net: P10
+              row_net: P3
               column_net: P0
               skip: true
             home:
-              row_net: P9
+              row_net: P4
               column_net: P0
             top:
-              row_net: P8
+              row_net: P5
               column_net: P0
             num:
-              row_net: P7
+              row_net: P6
               column_net: P0
               skip: true
         pinky:
@@ -36,16 +36,16 @@ points:
             stagger: 0
           rows:
             bottom:
-              row_net: P10
+              row_net: P3
               column_net: P1
             home:
-              row_net: P9
+              row_net: P4
               column_net: P1
             top:
-              row_net: P8
+              row_net: P5
               column_net: P1
             num:
-              row_net: P7
+              row_net: P6
               column_net: P1
         ring:
           key:
@@ -53,65 +53,65 @@ points:
             stagger: 8
           rows:
             bottom:
-              row_net: P10
+              row_net: P3
               column_net: P2
             home:
-              row_net: P9
+              row_net: P4
               column_net: P2
             top:
-              row_net: P8
+              row_net: P5
               column_net: P2
             num:
-              row_net: P7
+              row_net: P6
               column_net: P2
         middle:
           key:
             stagger: 2
           rows:
             bottom:
-              row_net: P10
-              column_net: P3
+              row_net: P3
+              column_net: P10
             home:
-              row_net: P9
-              column_net: P3
+              row_net: P4
+              column_net: P10
             top:
-              row_net: P8
-              column_net: P3
+              row_net: P5
+              column_net: P10
             num:
-              row_net: P7
-              column_net: P3
+              row_net: P6
+              column_net: P10
         index:
           key:
             stagger: -8
           rows:
             bottom:
-              row_net: P10
-              column_net: P4
+              row_net: P3
+              column_net: P9
             home:
-              row_net: P9
-              column_net: P4
+              row_net: P4
+              column_net: P9
             top:
-              row_net: P8
-              column_net: P4
+              row_net: P5
+              column_net: P9
             num:
-              row_net: P7
-              column_net: P4
+              row_net: P6
+              column_net: P9
         inner:
           key:
             stagger: 0
           rows:
             bottom:
-              column_net: P5
-              row_net: P10
+              column_net: P8
+              row_net: P3
             home:
-              column_net: P5
-              row_net: P9
+              column_net: P8
+              row_net: P4
             top:
-              row_net: P8
-              column_net: P5
+              row_net: P5
+              column_net: P8
             num:
-              row_net: P7
-              column_net: P5
+              row_net: P6
+              column_net: P8
       rows:
         bottom:
           padding: 1cx
@@ -132,8 +132,8 @@ points:
             origin: [0,0]
           rows:
             home:
-              column_net: P6
-              row_net: P7
+              row_net: P6
+              column_net: P7
 
 outlines:
   _pcb_perimeter_raw:

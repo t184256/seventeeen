@@ -37,7 +37,7 @@ in
 
 stdenvNoCC.mkDerivation {
   pname = "seventeeen";
-  version = "0.0.0";
+  version = "0.1";
 
   src = ./.;
 

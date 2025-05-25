@@ -234,7 +234,7 @@ pcbs:
         what: ceoloide/utility_text
         where: matrix_index_num
         params:
-          text: 'seventeeen v0.0'
+          text: 'seventeeen v0.1'
           reversible: true
         adjust:
           shift: [0,u/2+8]

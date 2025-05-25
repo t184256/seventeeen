@@ -200,6 +200,20 @@ pcbs:
         adjust:
           shift: [-3, 0]
           rotate: 90
+      helper_via_1:
+        what: via
+        where: true
+        params:
+          net: "{{row_net}}"
+        adjust:
+          shift: [3.5, -3]
+      helper_via_2:
+        what: via
+        where: true
+        params:
+          net: "{{row_net}}"
+        adjust:
+          shift: [0, -3]
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

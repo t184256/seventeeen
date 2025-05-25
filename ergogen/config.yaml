@@ -224,6 +224,23 @@ pcbs:
         adjust:
           shift: [-82, -5]
           rotate: 270
+      jst1:
+        what: ceoloide/battery_connector_jst_ph_2
+        where: thumb_home_home
+        params:
+          BAT_P: CBT+
+          BAT_N: BAT-
+        adjust:
+          shift: [-87, 25]
+      jst2:
+        what: ceoloide/battery_connector_jst_ph_2
+        where: matrix_pinky_bottom
+        params:
+          BAT_P: CBT+
+          BAT_N: BAT-
+        adjust:
+          shift: [12, -4]
+          rotate: 90
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

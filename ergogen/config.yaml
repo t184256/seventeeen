@@ -200,19 +200,20 @@ pcbs:
         adjust:
           shift: [-3, 0]
           rotate: 90
+      name_version:
+        what: ceoloide/utility_text
+        where: matrix_index_num
+        params:
+          text: 'seventeeen v0.0'
+          reversible: true
+        adjust:
+          shift: [0,u/2+8]
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
         where: matrix_index_num
         params:
-          text: 'seventeeen v0.0\nJLCJLCJLCJLC'
+          text: 'JLCJLCJLCJLC'
           reversible: true
         adjust:
-          shift: [0,u/2+5]
-      ergogen_logo:
-        what: ceoloide/utility_ergogen_logo
-        where: matrix_outer_bottom
-        params:
-          scale: 2.5
-          reversible: true
-        adjust:
-          shift: [0,-1u]
+          shift: [0,u/2+6]
+

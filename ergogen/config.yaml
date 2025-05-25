@@ -175,7 +175,7 @@ pcbs:
         params:
           from: "{{column_net}}"
           to: "{{colrow}}"
-          include_keycap: true
+          #include_keycap: true
           keycap_width: 16.5
           keycap_height: 16.5
           reversible: true

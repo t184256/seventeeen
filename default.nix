@@ -24,12 +24,11 @@ let
     installPhase = ''
       mkdir -p $out
       cp -v \
-        ${ergogen-footprints}/reset_switch_tht_top.js \
-        ${ergogen-footprints}/switch_choc_v1_v2.js \
-        ${ergogen-footprints}/trrs_pj320a.js \
-        ${ergogen-footprints}/utility_ergogen_logo.js \
-        ${ergogen-footprints}/utility_text.js \
         ${ergogen-footprints}/backlog/virginia2244/seeed_xiao.js \
+        ${ergogen-footprints}/mounting_hole_npth.js \
+        ${ergogen-footprints}/power_switch_smd_side.js \
+        ${ergogen-footprints}/switch_choc_v1_v2.js \
+        ${ergogen-footprints}/utility_text.js \
         $out/
     '';
   };

@@ -200,6 +200,22 @@ pcbs:
         adjust:
           shift: [-3, 0]
           rotate: 90
+      mounting_hole_se:
+        what: ceoloide/mounting_hole_npth
+        where: thumb_home_home
+        adjust.shift: [9 - 2, -10 + 2]
+      mounting_hole_sw:
+        what: ceoloide/mounting_hole_npth
+        where: thumb_home_home
+        adjust.shift: [-91 + 2, -10 + 2]
+      mounting_hole_nw:
+        what: ceoloide/mounting_hole_npth
+        where: thumb_home_home
+        adjust.shift: [-91 + 2, 90 - 2]
+      mounting_hole_ne:
+        what: ceoloide/mounting_hole_npth
+        where: thumb_home_home
+        adjust.shift: [9 - 2, 90 - 2]
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num

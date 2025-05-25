@@ -214,6 +214,16 @@ pcbs:
           net: "{{row_net}}"
         adjust:
           shift: [0, -3]
+      power_switch:
+        what: ceoloide/power_switch_smd_side
+        where: thumb_home_home
+        params:
+          reversible: true
+          from: 'BAT+'
+          to: 'CBT+'
+        adjust:
+          shift: [-82, -5]
+          rotate: 270
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

@@ -123,8 +123,8 @@ points:
           padding: 1cx
     thumb:
       anchor:
-        ref: matrix_index_bottom
-        shift: [17, -21]
+        ref: matrix_inner_bottom
+        shift: [-1.5, -17 - 6]
       columns:
         home:
           key:
@@ -147,13 +147,13 @@ outlines:
       operation: stack
       points:
         - ref: thumb_home_home
-          shift: [9,-10]
+          shift: [10,-10]
         - ref: thumb_home_home
-          shift: [-91,-10]
+          shift: [-92,-10]
         - ref: thumb_home_home
-          shift: [-91,90]
+          shift: [-92,92]
         - ref: thumb_home_home
-          shift: [9,90]
+          shift: [10,92]
   pcb_perimeter:
     - what: outline
       name: _polygon
@@ -169,9 +169,9 @@ pcbs:
       main:
         outline: pcb_perimeter
     footprints:
-      keys:
+      keys_normal:
         what: ceoloide/switch_choc_v1_v2
-        where: true
+        where: /.*(pinky|ring|middle|index|thumb).*/
         params:
           from: "{{column_net}}"
           to: "{{colrow}}"
@@ -183,7 +183,44 @@ pcbs:
           solder: false
           choc_v2_support: false
           #include_plated_holes: true
-        adjust.rotate: 270
+      keys_rotated_outer:
+        $extends: pcbs.seventeeen.footprints.keys_normal
+        where: /.*outer.*/
+        adjust.orient: 270
+      keys_rotated_inner:
+        $extends: pcbs.seventeeen.footprints.keys_normal
+        where: /.*inner.*/
+        adjust.orient: 90
+      diode_normal:
+        what: diode
+        where: /.*(pinky|ring|middle|index|thumb).*/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -3]
+      diode_rotated_outer:
+        $extends: pcbs.seventeeen.footprints.diode_normal
+        where: /.*outer.*/
+        adjust.orient: 270
+      diode_rotated_inner:
+        $extends: pcbs.seventeeen.footprints.diode_normal
+        where: /.*inner.*/
+        adjust.orient: 90
+      #helper_via_1:
+      #  what: via
+      #  where: true
+      #  params:
+      #    net: "{{row_net}}"
+      #  adjust:
+      #    shift: [3.5, -3]
+      #helper_via_2:
+      #  what: via
+      #  where: true
+      #  params:
+      #    net: "{{row_net}}"
+      #  adjust:
+      #    shift: [0, -3]
       seeed:
         what: ceoloide/seeed_xiao
         where: matrix_pinky_bottom
@@ -191,45 +228,22 @@ pcbs:
           reversable: true
         adjust.shift: [18, -18]
         adjust.rotate: 90
-      diode:
-        what: diode
-        where: true
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-        adjust:
-          shift: [-3, 0]
-          rotate: 90
-      helper_via_1:
-        what: via
-        where: true
-        params:
-          net: "{{row_net}}"
-        adjust:
-          shift: [3.5, -3]
-      helper_via_2:
-        what: via
-        where: true
-        params:
-          net: "{{row_net}}"
-        adjust:
-          shift: [0, -3]
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [9 - 2, -10 + 2]
+        adjust.shift: [10 - 2, -10 + 2]
       mounting_hole_sw:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [-91 + 2, -10 + 2]
+        adjust.shift: [-92 + 2, -10 + 2]
       mounting_hole_nw:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [-91 + 2, 90 - 2]
+        adjust.shift: [-92 + 2, 92 - 2]
       mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [9 - 2, 90 - 2]
+        adjust.shift: [10 - 2, 92 - 2]
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num
@@ -243,7 +257,7 @@ pcbs:
         where: matrix_index_num
         params:
           text: 'JLCJLCJLCJLC'
-          reversible: true
+          #reversible: true
         adjust:
           shift: [0,u/2+6]
 

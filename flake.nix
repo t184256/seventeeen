@@ -1,5 +1,5 @@
 {
-  description = "A split ortho 100x100 keyboard with 17mm spacing & XIAO Seeed";
+  description = "A split ortho 102x102 keyboard with 17mm spacing & XIAO Seeed";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

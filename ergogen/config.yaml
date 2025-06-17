@@ -141,7 +141,7 @@ outlines:
       where: true
       asym: source
       size: 17
-      corner: 1
+      corner: 0
   _polygon:
     - what: polygon # all borders
       operation: stack
@@ -175,9 +175,9 @@ pcbs:
         params:
           from: "{{column_net}}"
           to: "{{colrow}}"
-          #include_keycap: true
-          keycap_width: 16.5
-          keycap_height: 16.5
+          include_keycap: true
+          keycap_width: 17
+          keycap_height: 17
           reversible: true
           hotswap: true
           solder: false

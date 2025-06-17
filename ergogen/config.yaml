@@ -144,8 +144,8 @@ outlines:
       asym: source
       size: 17
       corner: 0
-  _polygon:
-    - what: polygon # all borders
+  _square:
+    - what: polygon  # all borders
       operation: stack
       points:
         - ref: thumb_home_home
@@ -156,13 +156,36 @@ outlines:
           shift: [-92,93]
         - ref: thumb_home_home
           shift: [10,93]
+  _custom_outline:
+    - what: polygon  # all borders
+      operation: stack
+      points:
+        - {ref: thumb_home_home, shift: [ 10, -9]}  # bottom right of the PCB
+        - {ref: thumb_home_home, shift: [-33.0, -9]}  # bottom left of the MCU
+        - {ref: thumb_home_home, shift: [-33.0, 10.5]}  # top left of the MCU
+        - {ref: thumb_home_home, shift: [-54, 10.5]}  # control point
+        - {ref: matrix_pinky_bottom, shift: [+.5u + 3.5, -.5u - 3.5]}  # almost
+        - {ref: matrix_pinky_bottom, shift: [+.5u, -.5u]}  # bottom right of it
+        - {ref: matrix_pinky_bottom, shift: [-.5u, -.5u]}  # bottom left of it
+        - {ref: matrix_outer_home, shift: [-.5u, -.5u]}  # diagonal cut \
+        - {ref: matrix_outer_top, shift: [-.5u, +.5u]}  # straight up
+        - {ref: matrix_pinky_num, shift: [-.5u, +.5u]}  # diagonal cut /
+        - {ref: matrix_pinky_num, shift: [+.0u, +1u]}  # diagonal cut / cont
+        - {ref: matrix_pinky_num, shift: [+.0u + 2.5, +1u + 2.5]}  #  / cont
+        # using pinky and outer exclusively helps with being 45 degrees,
+        # as they have no offset
+        - {ref: thumb_home_home, shift: [-59, 93]}  # control point
+        - {ref: thumb_home_home, shift: [ 10, 93]}  # top right of the PCB
   pcb_perimeter:
     - what: outline
-      name: _polygon
-    # uncomment to see the overhang
-    - what: outline # keys
+      name: _custom_outline
+    - what: outline  # keys
       name: _pcb_perimeter_raw
       operation: add
+    # uncomment to square the board
+    #- what: outline
+    #  name: _square
+    #  operation: add
 
 pcbs:
   seventeeen:
@@ -237,22 +260,24 @@ pcbs:
           reversable: true
         adjust.shift: [1.5, 21]
         adjust.orient: 90
-      mounting_hole_se:
+      mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
         params:
           hole_size: 3.2  # ~M3
           hole_drill: 3.2  # ~M3
-        adjust.shift: [10 - 2.5, -9 + 2.5]
-      mounting_hole_sw:
-        $extends: pcbs.seventeeen.footprints.mounting_hole_se
-        adjust.shift: [-92 + 2.5, -9 + 2.5]
-      mounting_hole_nw:
-        $extends: pcbs.seventeeen.footprints.mounting_hole_se
-        adjust.shift: [-92 + 2.5, 93 - 2.5]
-      mounting_hole_ne:
-        $extends: pcbs.seventeeen.footprints.mounting_hole_se
         adjust.shift: [10 - 2.5, 93 - 2.5]
+      mounting_hole_sw:
+        where: matrix_outer_home
+        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
+        adjust.shift: [0, -.5u - 4.5]
+      mounting_hole_nw:
+        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
+        where: matrix_outer_top
+        adjust.shift: [0, +.5u + 4.5]
+      mounting_hole_se:
+        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
+        adjust.shift: [10 - 2.5, -9 + 2.5]
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num

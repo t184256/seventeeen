@@ -223,6 +223,13 @@ pcbs:
       #    net: "{{row_net}}"
       #  adjust:
       #    shift: [0, -3]
+      #battery_location_suggestion_1:
+      #  what: ceoloide/utility_filled_zone
+      #  params:
+      #    name: b
+      #    fill_type: hatch
+      #    points: [[30,-2],[60,-2],[60,10],[30,10]]
+      #  where: thumb_home_home
       seeed:
         what: ceoloide/seeed_xiao
         where: thumb_home_home

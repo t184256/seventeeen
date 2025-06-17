@@ -225,11 +225,11 @@ pcbs:
       #    shift: [0, -3]
       seeed:
         what: ceoloide/seeed_xiao
-        where: matrix_pinky_bottom
+        where: thumb_home_home
         params:
           reversable: true
-        adjust.shift: [18, -18]
-        adjust.rotate: 90
+        adjust.shift: [1.5, 21]
+        adjust.orient: 90
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

@@ -240,19 +240,19 @@ pcbs:
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [10 - 2, -9 + 2]
+        params:
+          hole_size: 3.2  # ~M3
+          hole_drill: 3.2  # ~M3
+        adjust.shift: [10 - 2.5, -9 + 2.5]
       mounting_hole_sw:
-        what: ceoloide/mounting_hole_npth
-        where: thumb_home_home
-        adjust.shift: [-92 + 2, -9 + 2]
+        $extends: pcbs.seventeeen.footprints.mounting_hole_se
+        adjust.shift: [-92 + 2.5, -9 + 2.5]
       mounting_hole_nw:
-        what: ceoloide/mounting_hole_npth
-        where: thumb_home_home
-        adjust.shift: [-92 + 2, 93 - 2]
+        $extends: pcbs.seventeeen.footprints.mounting_hole_se
+        adjust.shift: [-92 + 2.5, 93 - 2.5]
       mounting_hole_ne:
-        what: ceoloide/mounting_hole_npth
-        where: thumb_home_home
-        adjust.shift: [10 - 2, 93 - 2]
+        $extends: pcbs.seventeeen.footprints.mounting_hole_se
+        adjust.shift: [10 - 2.5, 93 - 2.5]
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num

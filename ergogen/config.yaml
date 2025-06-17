@@ -124,6 +124,8 @@ points:
     thumb:
       anchor:
         ref: matrix_inner_bottom
+        # shifted inwards to try wider keycaps, like 1.25u or 1.75u
+        # if that doesn't pan out, shift outwards
         shift: [-1.5, -17 - 7.5]
       columns:
         home:
@@ -179,7 +181,7 @@ pcbs:
           keycap_width: 17
           keycap_height: 17
           reversible: true
-          hotswap: true
+          hotswap: true  # weird rotations can be undone if that'd be toggled
           solder: false
           choc_v2_support: false
           #include_plated_holes: true

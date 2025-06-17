@@ -50,7 +50,7 @@ points:
         ring:
           key:
             origin: [-12, -19]
-            stagger: 8
+            stagger: 9
           rows:
             bottom:
               row_net: P3
@@ -82,7 +82,7 @@ points:
               column_net: P10
         index:
           key:
-            stagger: -8
+            stagger: -9
           rows:
             bottom:
               row_net: P3
@@ -124,7 +124,7 @@ points:
     thumb:
       anchor:
         ref: matrix_inner_bottom
-        shift: [-1.5, -17 - 6]
+        shift: [-1.5, -17 - 7.5]
       columns:
         home:
           key:
@@ -147,20 +147,20 @@ outlines:
       operation: stack
       points:
         - ref: thumb_home_home
-          shift: [10,-10]
+          shift: [10,-9]
         - ref: thumb_home_home
-          shift: [-92,-10]
+          shift: [-92,-9]
         - ref: thumb_home_home
-          shift: [-92,92]
+          shift: [-92,93]
         - ref: thumb_home_home
-          shift: [10,92]
+          shift: [10,93]
   pcb_perimeter:
     - what: outline
       name: _polygon
     # uncomment to see the overhang
-    #- what: outline # keys
-    #  name: _pcb_perimeter_raw
-    #  operation: add
+    - what: outline # keys
+      name: _pcb_perimeter_raw
+      operation: add
 
 pcbs:
   seventeeen:
@@ -231,19 +231,19 @@ pcbs:
       mounting_hole_se:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [10 - 2, -10 + 2]
+        adjust.shift: [10 - 2, -9 + 2]
       mounting_hole_sw:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [-92 + 2, -10 + 2]
+        adjust.shift: [-92 + 2, -9 + 2]
       mounting_hole_nw:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [-92 + 2, 92 - 2]
+        adjust.shift: [-92 + 2, 93 - 2]
       mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [10 - 2, 92 - 2]
+        adjust.shift: [10 - 2, 93 - 2]
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num

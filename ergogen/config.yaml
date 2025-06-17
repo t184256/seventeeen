@@ -252,6 +252,8 @@ pcbs:
         params:
           text: 'seventeeen v0.2'
           reversible: true
+          width: 1.25
+          height: 1.25
         adjust:
           shift: [0,u/2+8]
       jlcpcb_order_number_text:
@@ -259,6 +261,8 @@ pcbs:
         where: matrix_index_num
         params:
           text: 'JLCJLCJLCJLC'
+          width: 1.25
+          height: 1.25
           #reversible: true
         adjust:
           shift: [0,u/2+6]

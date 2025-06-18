@@ -161,8 +161,8 @@ outlines:
       operation: stack
       points:
         - {ref: thumb_home_home, shift: [ 10, -9]}  # bottom right of the PCB
-        - {ref: thumb_home_home, shift: [-33.0, -9]}  # bottom left of the MCU
-        - {ref: thumb_home_home, shift: [-33.0, 10.5]}  # top left of the MCU
+        - {ref: thumb_home_home, shift: [-39, -9]}  # bottom left of the MCU
+        - {ref: thumb_home_home, shift: [-39, 10.5]}  # top left of the MCU
         - {ref: thumb_home_home, shift: [-54, 10.5]}  # control point
         - {ref: matrix_pinky_bottom, shift: [+.5u + 3.5, -.5u - 3.5]}  # almost
         - {ref: matrix_pinky_bottom, shift: [+.5u, -.5u]}  # bottom right of it
@@ -258,7 +258,7 @@ pcbs:
         where: thumb_home_home
         params:
           reversable: true
-        adjust.shift: [1.5, 21]
+        adjust.shift: [1.5, 27]
         adjust.orient: 90
       battery_connector_1:
         what: ceoloide/battery_connector_jst_ph_2

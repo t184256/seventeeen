@@ -280,11 +280,11 @@ pcbs:
       mounting_hole_sw:
         where: matrix_outer_home
         $extends: pcbs.seventeeen.footprints.mounting_hole_ne
-        adjust.shift: [0, -.5u - 4.5]
+        adjust.shift: [0, -.5u - 5]
       mounting_hole_nw:
         $extends: pcbs.seventeeen.footprints.mounting_hole_ne
         where: matrix_outer_top
-        adjust.shift: [0, +.5u + 4.5]
+        adjust.shift: [0, +.5u + 5]
       mounting_hole_se:
         $extends: pcbs.seventeeen.footprints.mounting_hole_ne
         adjust.shift: [10 - 2.5, -9 + 2.5]

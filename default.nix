@@ -27,6 +27,7 @@ let
         ${ergogen-footprints}/backlog/virginia2244/seeed_xiao.js \
         ${ergogen-footprints}/battery_connector_jst_ph_2.js \
         ${ergogen-footprints}/mounting_hole_npth.js \
+        ${ergogen-footprints}/mounting_hole_plated.js \
         ${ergogen-footprints}/power_switch_smd_side.js \
         ${ergogen-footprints}/switch_choc_v1_v2.js \
         ${ergogen-footprints}/utility_filled_zone.js \

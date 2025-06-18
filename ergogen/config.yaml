@@ -253,6 +253,7 @@ pcbs:
       #    fill_type: hatch
       #    points: [[30,-2],[60,-2],[60,10],[30,10]]
       #  where: thumb_home_home
+      #
       seeed:
         what: ceoloide/seeed_xiao
         where: thumb_home_home
@@ -260,6 +261,28 @@ pcbs:
           reversable: true
         adjust.shift: [1.5, 27]
         adjust.orient: 90
+      battery_underpad_l:
+        what: pad
+        where: thumb_home_home
+        params:
+          width: 1
+          height: 3
+          net: BATP
+        adjust.shift: [-27.25, 6]
+      battery_underhole_l:
+        what: ceoloide/mounting_hole_plated
+        where: thumb_home_home
+        params:
+          drill: 0.8
+          outline: 0.4
+        adjust.shift: [-27.25, 6]
+      battery_underpad_r:
+        $extends: pcbs.seventeeen.footprints.battery_underpad_l
+        adjust.shift: [-27.25, 6 - 9]
+      battery_underhole_r:
+        $extends: pcbs.seventeeen.footprints.battery_underhole_l
+        adjust.shift: [-27.25, 6 - 9]
+
       battery_connector_1:
         what: ceoloide/battery_connector_jst_ph_2
         where: matrix_inner_bottom
@@ -270,6 +293,7 @@ pcbs:
         $extends: pcbs.seventeeen.footprints.battery_connector_1
         where: matrix_index_bottom
         adjust.shift: [5.5, -11]
+
       mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
@@ -288,6 +312,7 @@ pcbs:
       mounting_hole_se:
         $extends: pcbs.seventeeen.footprints.mounting_hole_ne
         adjust.shift: [10 - 2.5, -9 + 2.5]
+
       name_version:
         what: ceoloide/utility_text
         where: matrix_index_num

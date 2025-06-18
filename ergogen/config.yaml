@@ -260,6 +260,16 @@ pcbs:
           reversable: true
         adjust.shift: [1.5, 21]
         adjust.orient: 90
+      battery_connector_1:
+        what: ceoloide/battery_connector_jst_ph_2
+        where: matrix_inner_bottom
+        adjust.shift: [-3.5, -12]
+        adjust.rotate: 270
+        # no need to make reversible if I can flip battery wires in connector
+      battery_connector_2:
+        $extends: pcbs.seventeeen.footprints.battery_connector_1
+        where: matrix_index_bottom
+        adjust.shift: [5.5, -11]
       mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

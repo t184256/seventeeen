@@ -270,7 +270,7 @@ pcbs:
         params:
           width: 1
           height: 3
-          net: BATP
+          net: BAT_PS  # switched
         adjust.shift: [-27 - 0.25, 1.5 + 4.5]
       battery_underhole_l:
         what: ceoloide/mounting_hole_plated
@@ -291,11 +291,23 @@ pcbs:
         where: matrix_inner_bottom
         adjust.shift: [-3.5, -12]
         adjust.rotate: 270
+        params.BAT_P: BAT_P
+        params.BAT_N: GND
         # no need to make reversible if I can flip battery wires in connector
       battery_connector_2:
         $extends: pcbs.seventeeen.footprints.battery_connector_1
         where: matrix_index_bottom
         adjust.shift: [5.5, -11]
+      power_switch:
+        what: ceoloide/power_switch_smd_side
+        where: matrix_ring_bottom
+        adjust.shift: [2, -19]
+        adjust.rotate: 270
+        params:
+          reversible: true
+          side: B  # 1.4 mm, reverse if not using hotswap
+          from: BAT_P
+          to: BAT_PS
 
       hat_hole_ne:
         what: ceoloide/mounting_hole_npth

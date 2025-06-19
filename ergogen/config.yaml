@@ -262,6 +262,8 @@ pcbs:
         where: thumb_home_home
         params:
           reversable: true
+          label: false
+          instructions: false
         adjust.shift: [-27, 1.5]
         adjust.rotate: 90
       battery_underpad_l:

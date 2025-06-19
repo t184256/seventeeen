@@ -360,6 +360,10 @@ pcbs:
       mounting_hole_se:
         $extends: pcbs.seventeeen.footprints.mounting_hole_ne
         adjust.shift: [10 - 2.5, -9 + 2.5]
+      mounting_hole_sw_extra:
+        where: matrix_ring_num
+        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
+        adjust.shift: [-13.25, 8]
 
       name_version:
         what: ceoloide/utility_text

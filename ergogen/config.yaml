@@ -226,7 +226,7 @@ pcbs:
           include_traces_vias: true
           trace_distance: -1.1
         adjust:
-          shift: [0, -3]
+          shift: [0, -4.7]
       diode_rotated_outer:
         $extends: pcbs.seventeeen.footprints.diode_normal
         where: /.*outer.*/

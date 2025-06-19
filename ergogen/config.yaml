@@ -311,6 +311,23 @@ pcbs:
         $extends: pcbs.seventeeen.footprints.hat_hole_ne
         adjust.shift: [-27 - 12, 1.5 - 8]
 
+      spacer_holes_above:
+        where: /matrix_(outer_top|pinky_num|index_num|inner_num)/
+        what: ceoloide/mounting_hole_npth
+        adjust.shift: [0, +u/2 + 1.5]
+      spacer_holes_below:
+        where: /matrix_(outer_home|middle_bottom|inner_bottom)/
+        what: ceoloide/mounting_hole_npth
+        adjust.shift: [0, -u/2 - 1.5]
+      spacer_hole_below_thumb:
+        where: thumb_home_home
+        what: ceoloide/mounting_hole_npth
+        adjust.shift: [-u/2 - 1.5, -u/2 + 2]
+      spacer_hole_far_below:
+        where: matrix_ring_bottom
+        what: ceoloide/mounting_hole_npth
+        adjust.shift: [-5.5, -u/2 - 9.5]
+
       mounting_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home

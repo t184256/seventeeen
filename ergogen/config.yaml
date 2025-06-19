@@ -287,6 +287,12 @@ pcbs:
       battery_underhole_r:
         $extends: pcbs.seventeeen.footprints.battery_underhole_l
         adjust.shift: [-27 - 0.25, 1.5 - 4.5]
+      battery_underroute:
+        what: ceoloide/utility_router
+        where: thumb_home_home
+        adjust.shift: [-27, 1.5]
+        params.route: 'f(-0.25,-4.5)(-0.25,4.5)'
+        params.net: BAT_PS
 
       battery_connector_1:
         what: ceoloide/battery_connector_jst_ph_2

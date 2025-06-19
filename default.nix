@@ -33,6 +33,7 @@ let
         ${ergogen-footprints}/power_switch_smd_side.js \
         ${ergogen-footprints}/switch_choc_v1_v2.js \
         ${ergogen-footprints}/utility_filled_zone.js \
+        ${ergogen-footprints}/utility_router.js \
         ${ergogen-footprints}/utility_text.js \
         $out/
     '';

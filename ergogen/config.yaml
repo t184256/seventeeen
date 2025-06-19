@@ -371,18 +371,18 @@ pcbs:
         params:
           text: 'seventeeen v0.2'
           reversible: true
-          width: 1.25
-          height: 1.25
+          width: 1.75
+          height: 1.75
         adjust:
-          shift: [0,u/2+8]
+          shift: [u/2,u/2+7]
       jlcpcb_order_number_text:
         what: ceoloide/utility_text
         where: matrix_index_num
         params:
           text: 'JLCJLCJLCJLC'
-          width: 1.25
-          height: 1.25
+          width: 1.75
+          height: 1.75
           #reversible: true
         adjust:
-          shift: [0,u/2+6]
+          shift: [u/2,u/2+4]
 

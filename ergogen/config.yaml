@@ -217,11 +217,14 @@ pcbs:
         where: /.*inner.*/
         adjust.orient: 90
       diode_normal:
-        what: diode
+        what: ceoloide/diode_tht_sod123
         where: /.*(pinky|ring|middle|index|thumb).*/
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
+          reversible: true
+          include_traces_vias: true
+          trace_distance: -1.1
         adjust:
           shift: [0, -3]
       diode_rotated_outer:

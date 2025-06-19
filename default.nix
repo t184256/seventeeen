@@ -12,6 +12,7 @@ let
     };
     phases = [ "unpackPhase" "patchPhase" "installPhase" ];
     patches = [
+      ./footprints/diode.patch
       ./footprints/seeed_xiao.patch
     ];
     installPhase = "cp -r . $out";
@@ -26,6 +27,7 @@ let
       cp -v \
         ${ergogen-footprints}/backlog/virginia2244/seeed_xiao.js \
         ${ergogen-footprints}/battery_connector_jst_ph_2.js \
+        ${ergogen-footprints}/diode_tht_sod123.js \
         ${ergogen-footprints}/mounting_hole_npth.js \
         ${ergogen-footprints}/mounting_hole_plated.js \
         ${ergogen-footprints}/power_switch_smd_side.js \

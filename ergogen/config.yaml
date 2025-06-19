@@ -262,8 +262,8 @@ pcbs:
         where: thumb_home_home
         params:
           reversable: true
-        adjust.shift: [1.5, 27]
-        adjust.orient: 90
+        adjust.shift: [-27, 1.5]
+        adjust.rotate: 90
       battery_underpad_l:
         what: pad
         where: thumb_home_home
@@ -271,20 +271,20 @@ pcbs:
           width: 1
           height: 3
           net: BATP
-        adjust.shift: [-27.25, 6]
+        adjust.shift: [-27 - 0.25, 1.5 + 4.5]
       battery_underhole_l:
         what: ceoloide/mounting_hole_plated
         where: thumb_home_home
         params:
           drill: 0.8
           outline: 0.4
-        adjust.shift: [-27.25, 6]
+        adjust.shift: [-27 - 0.25, 1.5 + 4.5]
       battery_underpad_r:
         $extends: pcbs.seventeeen.footprints.battery_underpad_l
-        adjust.shift: [-27.25, 6 - 9]
+        adjust.shift: [-27 - 0.25, 1.5 - 4.5]
       battery_underhole_r:
         $extends: pcbs.seventeeen.footprints.battery_underhole_l
-        adjust.shift: [-27.25, 6 - 9]
+        adjust.shift: [-27 - 0.25, 1.5 - 4.5]
 
       battery_connector_1:
         what: ceoloide/battery_connector_jst_ph_2

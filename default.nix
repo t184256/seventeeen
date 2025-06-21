@@ -60,7 +60,7 @@ stdenvNoCC.mkDerivation {
         $out/pcbs/seventeeen.kicad_pcb \
         --exclude-drawing-sheet \
         --fit-page-to-board \
-        -l User.Drawings,F.Cu,B.Cu,F.Paste,B.Paste,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts
+        -l User.Drawings,B.Cu,B.Paste,B.SilkS,B.Mask,F.Mask,F.SilkS,F.Paste,F.Cu,Edge.Cuts
   '';
 
   meta = {

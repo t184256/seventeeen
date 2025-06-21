@@ -247,28 +247,6 @@ pcbs:
         $extends: pcbs.seventeeen.footprints.diode_normal
         where: /.*inner.*/
         adjust.orient: 90
-      #helper_via_1:
-      #  what: via
-      #  where: true
-      #  params:
-      #    net: "{{row_net}}"
-      #  adjust:
-      #    shift: [3.5, -3]
-      #helper_via_2:
-      #  what: via
-      #  where: true
-      #  params:
-      #    net: "{{row_net}}"
-      #  adjust:
-      #    shift: [0, -3]
-      #battery_location_suggestion_1:
-      #  what: ceoloide/utility_filled_zone
-      #  params:
-      #    name: b
-      #    fill_type: hatch
-      #    points: [[30,-2],[60,-2],[60,10],[30,10]]
-      #  where: thumb_home_home
-      #
       seeed:
         what: ceoloide/seeed_xiao
         where: thumb_home_home

@@ -6,6 +6,9 @@ units:
   cx: 17
   cy: 17
   default_spread: 17
+  # MCU positioning, a lot of stuff is tied to that
+  mcu_dx: -27
+  mcu_dy: 1.5
 
 points:
   zones:
@@ -272,7 +275,7 @@ pcbs:
           reversable: true
           label: false
           instructions: false
-        adjust.shift: [-27, 1.5]
+        adjust.shift: [mcu_dx, mcu_dy]
         adjust.rotate: 90
       battery_underpad_l:
         what: pad
@@ -281,24 +284,24 @@ pcbs:
           width: 1
           height: 3
           net: BAT_PS  # switched
-        adjust.shift: [-27 - 0.25, 1.5 + 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy + 4.5]
       battery_underhole_l:
         what: ceoloide/mounting_hole_plated
         where: thumb_home_home
         params:
           drill: 0.8
           outline: 0.4
-        adjust.shift: [-27 - 0.25, 1.5 + 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy + 4.5]
       battery_underpad_r:
         $extends: pcbs.seventeeen.footprints.battery_underpad_l
-        adjust.shift: [-27 - 0.25, 1.5 - 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy - 4.5]
       battery_underhole_r:
         $extends: pcbs.seventeeen.footprints.battery_underhole_l
-        adjust.shift: [-27 - 0.25, 1.5 - 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy - 4.5]
       battery_underroute:
         what: ceoloide/utility_router
         where: thumb_home_home
-        adjust.shift: [-27, 1.5]
+        adjust.shift: [mcu_dx, mcu_dy]
         params.route: 'f(-0.25,-4.5)(-0.25,4.5)'
         params.net: BAT_PS
 
@@ -328,16 +331,16 @@ pcbs:
       hat_hole_ne:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [-27 + 12, 1.5 + 8]
+        adjust.shift: [mcu_dx + 12, mcu_dy + 8]
       hat_hole_se:
         $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [-27 + 12, 1.5 - 8]
+        adjust.shift: [mcu_dx + 12, mcu_dy - 8]
       hat_hole_nw:
         $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [-27 - 12, 1.5 + 8]
+        adjust.shift: [mcu_dx - 12, mcu_dy + 8]
       hat_hole_sw:
         $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [-27 - 12, 1.5 - 8]
+        adjust.shift: [mcu_dx - 12, mcu_dy - 8]
 
       spacer_holes_above:
         where: /matrix_(outer_top|pinky_num|index_num|inner_num)/

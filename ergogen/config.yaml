@@ -342,11 +342,11 @@ pcbs:
       spacer_holes_above:
         where: /matrix_(outer_top|pinky_num|index_num|inner_num)/
         what: ceoloide/mounting_hole_npth
-        adjust.shift: [0, +u/2 + 1.5]
+        adjust.shift: [0, +u/2 + 1]
       spacer_holes_below:
         where: /matrix_(outer_home|middle_bottom|inner_bottom)/
         what: ceoloide/mounting_hole_npth
-        adjust.shift: [0, -u/2 - 1.5]
+        adjust.shift: [0, -u/2 - 1]
       spacer_hole_below_thumb:
         where: thumb_home_home
         what: ceoloide/mounting_hole_npth

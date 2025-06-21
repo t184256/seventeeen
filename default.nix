@@ -14,6 +14,7 @@ let
     patches = [
       ./footprints/choc.patch
       ./footprints/diode.patch
+      ./footprints/mounting_hole_plated.patch
       ./footprints/seeed_xiao.patch
     ];
     installPhase = "cp -r . $out";

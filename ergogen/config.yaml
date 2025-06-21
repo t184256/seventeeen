@@ -282,20 +282,21 @@ pcbs:
         what: pad
         where: thumb_home_home
         params:
-          width: 1
-          height: 3
+          width: 1.5
+          height: 1.5
           net: BAT_PS  # switched
-        adjust.shift: [mcu_dx - 0.25, mcu_dy + 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy + 3.5]
       battery_underhole_l:
         what: ceoloide/mounting_hole_plated
         where: thumb_home_home
         params:
           drill: 0.8
-          outline: 0.4
+          outline: 0.5
+          net: BAT_PS  # switched
         adjust.shift: [mcu_dx - 0.25, mcu_dy + 4.5]
       battery_underpad_r:
         $extends: pcbs.seventeeen.footprints.battery_underpad_l
-        adjust.shift: [mcu_dx - 0.25, mcu_dy - 4.5]
+        adjust.shift: [mcu_dx - 0.25, mcu_dy - 3.5]
       battery_underhole_r:
         $extends: pcbs.seventeeen.footprints.battery_underhole_l
         adjust.shift: [mcu_dx - 0.25, mcu_dy - 4.5]

@@ -205,13 +205,21 @@ pcbs:
           keycap_height: 17
           reversible: true
           hotswap: true  # weird rotations can be undone if that'd be toggled
+          include_plated_holes: true
           solder: false
-          choc_v2_support: false
-          #include_plated_holes: true
+          center_hole_diameter: 3.3  # 3.4 - .1
+          include_corner_marks: true
+          include_choc_v1_led_cutout_marks: true
       keys_rotated_outer:
         $extends: pcbs.seventeeen.footprints.keys_normal
         where: /.*outer.*/
         adjust.orient: 270
+        params:
+          hotswap: true
+          solder: true # let's have fun
+          # files are patched for 0.06" = 1.524 mm solder holes to fit Mill-Max
+          choc_v2_support: false
+          choc_v1_stabilizers_diameter: 1.8  # 1.9 - .1
       keys_rotated_inner:
         $extends: pcbs.seventeeen.footprints.keys_normal
         where: /.*inner.*/
@@ -225,12 +233,12 @@ pcbs:
           reversible: true
           include_traces_vias: true
           trace_distance: -1.1
-        adjust:
-          shift: [0, -4.7]
+        adjust.shift: [0, -4.7]
       diode_rotated_outer:
         $extends: pcbs.seventeeen.footprints.diode_normal
         where: /.*outer.*/
         adjust.orient: 270
+        adjust.shift: [0, -2.7]  # for funsies with alternative mounting
       diode_rotated_inner:
         $extends: pcbs.seventeeen.footprints.diode_normal
         where: /.*inner.*/
@@ -313,7 +321,7 @@ pcbs:
         adjust.rotate: 270
         params:
           reversible: true
-          side: B  # 1.4 mm, reverse if not using hotswap
+          side: B  # 1.4 mm, reverse if not using hotswap?
           from: BAT_P
           to: BAT_PS
 

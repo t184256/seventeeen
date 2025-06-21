@@ -1,0 +1,30 @@
+diff --git a/switch_choc_v1_v2.js b/switch_choc_v1_v2.js
+index 3c27cd7..b1818e9 100644
+--- a/switch_choc_v1_v2.js
++++ b/switch_choc_v1_v2.js
+@@ -456,15 +456,15 @@ module.exports = {
+     }
+ 
+     const solder_common = `
+-    (pad "2" thru_hole circle (at 0 ${solder_offset_y}5.9 ${195 + p.r}) (size 2.032 2.032) (drill 1.27) (layers "*.Cu" "*.Mask") ${p.from.str})
++    (pad "2" thru_hole circle (at 0 ${solder_offset_y}5.9 ${195 + p.r}) (size 2.5 2.5) (drill 1.53) (layers "*.Cu" "*.Mask") ${p.from.str})
+     `
+ 
+     const solder_front = `
+-    (pad "1" thru_hole circle (at ${solder_offset_x_front}5 ${solder_offset_y}3.8 ${195 + p.r}) (size 2.032 2.032) (drill 1.27) (layers "*.Cu" "*.Mask") ${p.to.str})
++    (pad "1" thru_hole circle (at ${solder_offset_x_front}5 ${solder_offset_y}3.8 ${195 + p.r}) (size 2.5 2.5) (drill 1.53) (layers "*.Cu" "*.Mask") ${p.to.str})
+     `
+     
+     const solder_back = `
+-    (pad "1" thru_hole circle (at ${solder_offset_x_back}5 ${solder_offset_y}3.8 ${195 + p.r}) (size 2.032 2.032) (drill 1.27) (layers "*.Cu" "*.Mask") ${p.to.str})
++    (pad "1" thru_hole circle (at ${solder_offset_x_back}5 ${solder_offset_y}3.8 ${195 + p.r}) (size 2.5 2.5) (drill 1.53) (layers "*.Cu" "*.Mask") ${p.to.str})
+     `
+ 
+     const oval_corner_stab_front = `
+@@ -751,4 +751,4 @@ module.exports = {
+ 
+     return final;
+   }
+-}
+\ No newline at end of file
++}

@@ -12,6 +12,7 @@ let
     };
     phases = [ "unpackPhase" "patchPhase" "installPhase" ];
     patches = [
+      ./footprints/choc.patch
       ./footprints/diode.patch
       ./footprints/seeed_xiao.patch
     ];

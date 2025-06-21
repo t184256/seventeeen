@@ -179,6 +179,32 @@ outlines:
         # as they have no offset
         - {ref: thumb_home_home, shift: [-59, 93]}  # control point
         - {ref: thumb_home_home, shift: [ 10, 93]}  # top right of the PCB
+  mounting:
+    - what: circle  # ne
+      radius: 3.2
+      where:
+        ref: thumb_home_home
+        shift: [10 - 2.5, 93 - 2.5]
+    - what: circle  # sw
+      radius: 3.2
+      where:
+        ref: thumb_home_home
+        shift: [0, -.5u - 5]
+    - what: circle  # nw
+      radius: 3.2
+      where:
+        ref: thumb_home_home
+        shift: [0, +.5u + 5]
+    - what: circle  # se
+      radius: 3.2
+      where:
+        ref: thumb_home_home
+        shift: [10 - 2.5, -9 + 2.5]
+    - what: circle  # extra
+      radius: 5
+      where:
+        ref: matrix_ring_num
+        shift: [-13.25, 8]
   pcb_perimeter:
     - what: outline
       name: _custom_outline
@@ -189,6 +215,15 @@ outlines:
     #- what: outline
     #  name: _square
     #  operation: add
+  silhouette:
+    - what: outline
+      name: pcb_perimeter
+    #- what: outline  # keys
+    #  name: mounting
+    #  operation: subtract
+cases:
+  silhouette:
+    - name: silhouette
 
 pcbs:
   seventeeen:

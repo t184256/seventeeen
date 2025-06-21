@@ -212,6 +212,7 @@ pcbs:
           solder: false
           center_hole_diameter: 3.3  # 3.4 - .1
           include_corner_marks: true
+          choc_v2_support: false
           include_choc_v1_led_cutout_marks: true
       keys_rotated_outer:
         $extends: pcbs.seventeeen.footprints.keys_normal

@@ -141,12 +141,97 @@ points:
               column_net: P7
 
 outlines:
-  _pcb_perimeter_raw:
+  keycaps_17:
     - what: rectangle
       where: true
       asym: source
       size: 17
       corner: 0
+  keycaps_rounded:
+    - what: rectangle
+      where: true
+      asym: source
+      size: 16.75
+      corner: 2
+  switches_15:
+    - what: rectangle
+      where: true
+      asym: source
+      size: 15
+  switches_14:
+    - what: rectangle
+      where: true
+      asym: source
+      size: 14
+  switches_rounded:
+    - what: rectangle
+      where: true
+      asym: source
+      size: 15
+      corner: 0.6
+  underside_approx:
+    # general keys: wide mounting for the hotswap switch contacts
+    - what: rectangle
+      where: /matrix_(pinky|ring|middle|index).*/
+      asym: source
+      size: [19.25, 5]
+      adjust.shift: [0, 4]
+    # general keys: narrow for the top of the switch
+    - what: rectangle
+      where: /matrix_(pinky|ring|middle|index).*/
+      asym: source
+      size: [6, 4]
+      adjust.shift: [0, 6.5]
+    # general keys: holes
+    - what: circle
+      where: /matrix_(pinky|ring|middle|index).*/
+      radius: 1.75
+      asym: source
+      adjust.shift: [0, 0]
+    - what: circle
+      where: /matrix_(pinky|ring|middle|index).*/
+      radius: 1.1
+      asym: source
+      adjust.shift: [5.5, 0]
+    - what: circle
+      where: /matrix_(pinky|ring|middle|index).*/
+      radius: 1.1
+      asym: source
+      adjust.shift: [-5.5, 0]
+    # general keys: diodes
+    - what: rectangle
+      where: /matrix_(pinky|ring|middle|index).*/
+      asym: source
+      size: [6, 4]
+      adjust.shift: [0, -4.75]
+    # outer keys: wide mounting for the hotswap switch contacts
+    - what: rectangle
+      where: /matrix_outer.*/
+      asym: source
+      size: [19.25, 5]
+      adjust.shift: [0, 4]
+      adjust.orient: 270
+    # outer keys: general overkill
+    - what: rectangle
+      where: /matrix_outer.*/
+      asym: source
+      size: [15, 16]
+      adjust.shift: [0, .5]
+      adjust.orient: 270
+    # inner keys: wide mounting for the hotswap switch contacts
+    - what: rectangle
+      where: /matrix_inner.*/
+      asym: source
+      size: [19.25, 5]
+      adjust.shift: [0, 4]
+      adjust.orient: 90
+    # inner keys: general overkill
+    - what: rectangle
+      where: /matrix_inner.*/
+      asym: source
+      size: [15, 16]
+      adjust.shift: [0, .5]
+      adjust.orient: 90
   _square:
     - what: polygon  # all borders
       operation: stack
@@ -208,8 +293,8 @@ outlines:
   pcb_perimeter:
     - what: outline
       name: _custom_outline
-    - what: outline  # keys
-      name: _pcb_perimeter_raw
+    - what: outline  # keys, should change nothing
+      name: keycaps_17
       operation: add
     # uncomment to square the board
     #- what: outline

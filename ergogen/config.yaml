@@ -181,27 +181,27 @@ outlines:
         - {ref: thumb_home_home, shift: [ 10, 93]}  # top right of the PCB
   mounting:
     - what: circle  # ne
-      radius: 3.2
+      radius: 3.2 / 2
       where:
         ref: thumb_home_home
         shift: [10 - 2.5, 93 - 2.5]
     - what: circle  # sw
-      radius: 3.2
+      radius: 3.2 / 2
       where:
-        ref: thumb_home_home
+        ref: matrix_outer_home
         shift: [0, -.5u - 5]
     - what: circle  # nw
-      radius: 3.2
+      radius: 3.2 / 2
       where:
-        ref: thumb_home_home
+        ref: matrix_outer_top
         shift: [0, +.5u + 5]
     - what: circle  # se
-      radius: 3.2
+      radius: 3.2 / 2
       where:
         ref: thumb_home_home
         shift: [10 - 2.5, -9 + 2.5]
     - what: circle  # extra
-      radius: 5
+      radius: 3.2 / 2
       where:
         ref: matrix_ring_num
         shift: [-13.25, 8]
@@ -218,9 +218,9 @@ outlines:
   silhouette:
     - what: outline
       name: pcb_perimeter
-    #- what: outline  # keys
-    #  name: mounting
-    #  operation: subtract
+    - what: outline  # keys
+      name: mounting
+      operation: subtract
 
 pcbs:
   seventeeen:

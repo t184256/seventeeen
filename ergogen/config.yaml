@@ -221,9 +221,6 @@ outlines:
     #- what: outline  # keys
     #  name: mounting
     #  operation: subtract
-cases:
-  silhouette:
-    - name: silhouette
 
 pcbs:
   seventeeen:

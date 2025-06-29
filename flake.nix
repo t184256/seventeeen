@@ -57,23 +57,14 @@
         seventeeen = pkgs.stdenvNoCC.mkDerivation {
           pname = "seventeeen";
           version = "0.1";
-
           src = ./.;
-
-          buildPhase = ''
-            mkdir -p ergogen/footprints
-            cp -rv ${ergogen-select-footprints} ergogen/footprints/ceoloide
-            ${pkgs.ergogen}/bin/ergogen ergogen/ -o $out
-            mkdir $out/previews tmp
-            find $out
-            HOME=$(realpath tmp) \
-              ${pkgs.kicad}/bin/kicad-cli pcb export svg \
-                --output $out/previews/seventeeen.svg \
-                $out/pcbs/seventeeen.kicad_pcb \
-                --exclude-drawing-sheet \
-                --fit-page-to-board \
-                -l User.Drawings,B.Cu,B.Paste,B.SilkS,B.Mask,F.Mask,F.SilkS,F.Paste,F.Cu,Edge.Cuts
-          '';
+          makeFlags = [
+            "ERGOGEN_FOOTPRINTS=${ergogen-select-footprints}"
+            "ERGOGEN=${pkgs.ergogen}/bin/ergogen"
+            "KICAD_CLI=${pkgs.kicad}/bin/kicad-cli"
+            "TMPDIR=tmp"
+          ];
+          enableParallelBuilding = true;
         };
 
       in
@@ -83,9 +74,12 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = [];
-          nativeBuildInputs = [];
+          nativeBuildInputs = with pkgs; [ gnumake kicad pkgs.ergogen ];
           shellHook = ''
-            export ENVVAR=val
+            export ERGOGEN_FOOTPRINTS=${ergogen-select-footprints}
+            export ERGOGEN=${pkgs.ergogen}/bin/ergogen
+            export KICAD=${pkgs.kicad}/bin/kicad
+            export KICAD_CLI=${pkgs.kicad}/bin/kicad-cli
           '';
         };
       }

@@ -338,7 +338,7 @@ pcbs:
         params:
           hotswap: true
           solder: true # let's have fun
-          # files are patched for 0.06" = 1.524 mm solder holes to fit Mill-Max
+          # files are patched for 0.06" ~= 1.52 mm solder holes to fit Mill-Max
           choc_v2_support: false
           choc_v1_stabilizers_diameter: 1.8  # 1.9 - .1
       keys_rotated_inner:

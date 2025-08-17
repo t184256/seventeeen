@@ -56,7 +56,7 @@
 
         seventeeen = pkgs.stdenvNoCC.mkDerivation {
           pname = "seventeeen";
-          version = "0.1";
+          version = "0.3";
           src = ./.;
           makeFlags = [
             "ERGOGEN_FOOTPRINTS=${ergogen-select-footprints}"

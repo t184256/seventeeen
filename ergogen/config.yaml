@@ -493,22 +493,12 @@ pcbs:
         what: ceoloide/utility_text
         where: matrix_index_num
         params:
-          text: 'seventeeen v0.2'
+          text: 'seventeeen v0.3'
           reversible: true
           width: 1.75
           height: 1.75
         adjust:
-          shift: [u/2,u/2+7]
-      jlcpcb_order_number_text:
-        what: ceoloide/utility_text
-        where: matrix_index_num
-        params:
-          text: 'JLCJLCJLCJLC'
-          width: 1.75
-          height: 1.75
-          #reversible: true
-        adjust:
-          shift: [u/2,u/2+4]
+          shift: [u/2,u/2+5]
 
       # MCU-tied routing: columns
       P7_route:  # thumb column

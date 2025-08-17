@@ -327,7 +327,7 @@ pcbs:
           hotswap: true  # weird rotations can be undone if that'd be toggled
           include_plated_holes: true
           solder: false
-          center_hole_diameter: 3.3  # 3.4 - .1
+          center_hole_diameter: 3.25  # 3.2 + .05
           include_corner_marks: true
           choc_v2_support: false
           include_choc_v1_led_cutout_marks: true

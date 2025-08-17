@@ -184,40 +184,26 @@ outlines:
       adjust.shift: [0, 6.5]
     # general keys: holes
     - what: circle
-      where: /matrix_(pinky|ring|middle|index).*/
+      where: /matrix_(outer|pinky|ring|middle|index).*/
       radius: 1.75
       asym: source
       adjust.shift: [0, 0]
     - what: circle
-      where: /matrix_(pinky|ring|middle|index).*/
+      where: /matrix_(outer|pinky|ring|middle|index).*/
       radius: 1.1
       asym: source
       adjust.shift: [5.5, 0]
     - what: circle
-      where: /matrix_(pinky|ring|middle|index).*/
+      where: /matrix_(outer|pinky|ring|middle|index).*/
       radius: 1.1
       asym: source
       adjust.shift: [-5.5, 0]
     # general keys: diodes
     - what: rectangle
-      where: /matrix_(pinky|ring|middle|index).*/
+      where: /matrix_(outer|pinky|ring|middle|index).*/
       asym: source
       size: [6, 4]
       adjust.shift: [0, -4.75]
-    # outer keys: wide mounting for the hotswap switch contacts
-    - what: rectangle
-      where: /matrix_outer.*/
-      asym: source
-      size: [19.25, 5]
-      adjust.shift: [0, 4]
-      adjust.orient: 270
-    # outer keys: general overkill
-    - what: rectangle
-      where: /matrix_outer.*/
-      asym: source
-      size: [15, 16]
-      adjust.shift: [0, .5]
-      adjust.orient: 270
     # inner keys: wide mounting for the hotswap switch contacts
     - what: rectangle
       where: /matrix_inner.*/
@@ -331,12 +317,11 @@ pcbs:
           include_corner_marks: true
           choc_v2_support: false
           include_choc_v1_led_cutout_marks: true
-      keys_rotated_outer:
+      keys_outer:
         $extends: pcbs.seventeeen.footprints.keys_normal
         where: /.*outer.*/
-        adjust.orient: 270
         params:
-          hotswap: true
+          hotswap: false
           solder: true # let's have fun
           # files are patched for 0.06" ~= 1.52 mm solder holes to fit Mill-Max
           choc_v2_support: false
@@ -347,7 +332,7 @@ pcbs:
         adjust.orient: 90
       diode_normal:
         what: ceoloide/diode_tht_sod123
-        where: /.*(pinky|ring|middle|index|thumb).*/
+        where: /.*(outer|pinky|ring|middle|index|thumb).*/
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
@@ -355,11 +340,6 @@ pcbs:
           include_traces_vias: true
           trace_distance: -1.1
         adjust.shift: [0, -4.7]
-      diode_rotated_outer:
-        $extends: pcbs.seventeeen.footprints.diode_normal
-        where: /.*outer.*/
-        adjust.orient: 270
-        adjust.shift: [0, -2.7]  # for funsies with alternative mounting
       diode_rotated_inner:
         $extends: pcbs.seventeeen.footprints.diode_normal
         where: /.*inner.*/
@@ -654,35 +634,28 @@ pcbs:
         params.route: 'b(2.5,4.75)(2.5,-0.5)(3.5,-1.5)(7,-1.5)(9,-3.5)'
         params.net: "{{colrow}}"
       # key-tied routing: outer column
-      diode_to_pad_outer_route:
+      diode_outer_key_vertical_bridge:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        params.route: 'b(2,2.75)(6.5,2.75)(7.5,1.75)(7.5,-4)'
-        adjust.rotate: 270
-      diode_to_pad_outer_more_route:
+        params.route: 'b(2,4.75)(3,4.75)(4,3.75)(4,-2.75)(5,-3.75)'
+      diode_outer_key_horizontal_bridge:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        params.route: 'b(2,2.75)(1,3.75)(-5,3.75)'
-        adjust.rotate: 270
-      diode_outer_column_route:
-        where: /.*outer.*/
-        $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        params.route:
-          'b(-6,0)(-6,-6)(-5,-7)(1.75,-7)v(5.75,-7)v(6.25,-6)(6.25,-3)'
-      diode_outer_column_bridge_route:
+        params.route: 'f(-4.5,-3.75)(4.5,-3.75)'
+      diode_outer_column__route:
         where: matrix_outer_top
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        params.route: 'b(-6,0)(-6,9)(-5,10)'
+        params.route: 'b(0,-6)(-2,-6)(-3,-5)(-3,10)(-2,11)'
       diode_outer_column_route_cont:
         where: matrix_outer_home
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
         params.route:
-          b(-6,0)(-6,6.75)(-5,7.75)(-2.75,7.75)v(5.75,7.75)v(7.75,7.75)(8.5,8.5)
+          'b(0,-6)(-2,-6)(-3,-5)(-3,6.75)(-2,7.75)(7.75,7.75)(8.5,8.5)'
       diode_outer_to_pinky_row_route:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
         params.route:
-          'f(-3,-2)(-2,-3)(2,-3)(3,-2)(3,1.75)(4,2.75)v(8,2.75)v(14,2.75)'
+          'f(-2,4.75)(-2,3.75)(-1,2.75)(14,2.75)'
         params.net: "{{row}}"
       # key-tied routing: pinky column
       diode_from_outer_towards_pinky_route:

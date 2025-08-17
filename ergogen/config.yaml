@@ -637,7 +637,7 @@ pcbs:
       diode_outer_key_vertical_bridge:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        params.route: 'b(2,4.75)(3,4.75)(4,3.75)(4,-2.75)(5,-3.75)'
+        params.route: 'f(2,4.5)(2.75,4.5)(3.5,3.75)(3.5,-2.75)(4.5,-3.75)'
       diode_outer_key_horizontal_bridge:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
@@ -655,16 +655,9 @@ pcbs:
         where: /.*outer.*/
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
         params.route:
-          'f(-2,4.75)(-2,3.75)(-1,2.75)(14,2.75)'
+          'f(-2,4.75)(-2,5.75)(-1,6.75)(14,6.75)(15,5.75)(15,4.75)'
         params.net: "{{row}}"
       # key-tied routing: pinky column
-      diode_from_outer_towards_pinky_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*outer.*/
-        params.route:
-          'f(14,2.75)(15,3.75)(15,4.75)'
-        params.net: "{{row}}"
       diode_pinky_column_cont_route:
         where: matrix_pinky_bottom
         $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route

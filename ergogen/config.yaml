@@ -326,6 +326,7 @@ pcbs:
           # files are patched for 0.06" ~= 1.52 mm solder holes to fit Mill-Max
           choc_v2_support: false
           choc_v1_stabilizers_diameter: 1.8  # 1.9 - .1
+        adjust.rotate: 180
       keys_rotated_inner:
         $extends: pcbs.seventeeen.footprints.keys_normal
         where: /.*inner.*/
@@ -339,7 +340,7 @@ pcbs:
           reversible: true
           include_traces_vias: true
           trace_distance: -1.1
-        adjust.shift: [0, -4.7]
+        adjust.shift: [0, 4.7]
         adjust.rotate: 180
       diode_normal:
         what: ceoloide/diode_tht_sod123
@@ -651,33 +652,26 @@ pcbs:
         params.width: 0.2
         params.net: "{{colrow}}"
         params.routes:
-          - b(-2,4.5)(-2.75,4.5)(-3.25,4)(-3.25,-2.75)(-4.25,-3.75)  # left
-          - b(-2,4.5)(-1.25,4.5)(0,3.25)(2.75,3.25)(3.25,2.75)  # right pt.1
-          - b(3.25,2.75)(3.25,-2.75)(4.25,-3.75)  # right pt.2
-          - b(-4.5,-3.75)(4.5,-3.75)  # horizontal bridge
-      outer_top_column_route:
-        what: ceoloide/utility_router
-        where: matrix_outer_top
-        params.width: 0.2
-        params.net: "{{colrow}}"
-        params.routes:
-          - 'b(0,-6)(6,-6)(7,-5)(7,8)(6,9)(2,9)(0,11)'
-          - 'b(0,-6)(-6,-6)(-7,-5)(-7,8)(-6,9)(-2,9)(0,11)'
+          - b(-2,-4.5)(-2.75,-4.5)(-3.25,-4)(-3.25,2.75)(-4.25,3.75)  # left
+          - b(-2,-4.5)(-1.25,-4.5)(0,-3.25)(2.75,-3.25)(3.25,-2.75)  # right#1
+          - b(3.25,-2.75)(3.25,2.75)(4.25,3.75)  # right#2
+          - b(-4.5,3.75)(4.5,3.75)  # horizontal bridge
       outer_home_column_route:
         what: ceoloide/utility_router
         where: matrix_outer_home
         params.width: 0.2
-        params.net: "{{colrow}}"
+        params.net: "{{column_net}}"
         params.routes:
-          - 'b(0,-6)(6,-6)(7,-5)(7,5)(6,6)(-6,6)(-7,5)(-7,-5)(-6,-6)(-0,-6)'
-          - 'b(0,-6)(6,-6)(18,-6)'
+          - 'b(0,6)(6,6)(7,5)(7,-7)(5.5,-8.5)(2.5,-8.5)(0,-11)'
+          - 'b(0,6)(-6,6)(-7,5)(-7,-7)(-5.5,-8.5)(-2.5,-8.5)(0,-11)'
           - 'b(6,6)(8.5,8.5)'
       diode_outer_to_pinky_row_route:
+        what: ceoloide/utility_router
         where: /.*outer.*/
-        $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
+        params.width: 0.2
+        params.net: "{{row_net}}"
         params.route:
-          'f(2,4.75)(2,5.75)(3,6.75)(14,6.75)(15,5.75)(15,4.75)'
-        params.net: "{{row}}"
+          'f(2,-4.75)(2,4.75)(2,5.75)(3,6.75)(14,6.75)(15,5.75)(15,4.75)'
       # key-tied routing: pinky column
       diode_pinky_column_cont_route:
         where: matrix_pinky_bottom

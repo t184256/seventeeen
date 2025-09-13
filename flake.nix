@@ -16,12 +16,12 @@
         };
         ergogen-footprints = pkgs.stdenvNoCC.mkDerivation {
           name = "ergogen-footprints";
-          version = "2025-02-19";
+          version = "2025-07-12";
           src = pkgs.fetchFromGitHub {
             owner = "ceoloide";
             repo = "ergogen-footprints";
-            rev = "87654b4654b134e4ce3f1f9887e90a5d917d53a3";
-            hash = "sha256-pwcj1DQDdTMpZqEhcdDYZBNS8X6sLwKpxzKlmgvkBO8=";
+            rev = "96adbfac691d9f3dab418b0a68c838cb3c1f805b";
+            hash = "sha256-aFR8WSslODEVEeIvaSthP+Q5cOKxz0dypPdrNk3aaok=";
           };
           phases = [ "unpackPhase" "patchPhase" "installPhase" ];
           patches = [

@@ -3,11 +3,10 @@ meta:
 
 units:
   u: 17
-  cx: 17
-  cy: 17
+  hu: u/2
   default_spread: 17
   # MCU positioning, a lot of stuff is tied to that
-  mcu_dx: -27
+  mcu_dx: -20  # should leave 1mm MCU <-> keycap
   mcu_dy: 1.5
 
 points:
@@ -117,19 +116,17 @@ points:
               column_net: P8
       rows:
         bottom:
-          padding: 1cx
+          padding: u
         home:
-          padding: 1cx
+          padding: u
         top:
-          padding: 1cx
+          padding: u
         num:
-          padding: 1cx
+          padding: u
     thumb:
       anchor:
         ref: matrix_inner_bottom
-        # shifted inwards to try wider keycaps, like 1.25u or 1.75u
-        # if that doesn't pan out, shift outwards
-        shift: [-1.5, -17 - 7.5]
+        shift: [0, -17 - 8]
       columns:
         home:
           key:
@@ -223,33 +220,40 @@ outlines:
       operation: stack
       points:
         - ref: thumb_home_home
-          shift: [10,-9]
+          shift: [hu,-hu]
         - ref: thumb_home_home
-          shift: [-92,-9]
+          shift: [-102+hu,-hu]
         - ref: thumb_home_home
-          shift: [-92,93]
+          shift: [-102+hu,102-hu]
         - ref: thumb_home_home
-          shift: [10,93]
+          shift: [hu,102-hu]
   _custom_outline:
     - what: polygon  # all borders
       operation: stack
       points:
-        - {ref: thumb_home_home, shift: [ 10, -9]}  # bottom right of the PCB
-        - {ref: thumb_home_home, shift: [-39 - 1.5, -9]}  # bottom left o'MCU
-        - {ref: thumb_home_home, shift: [-39 - 1.5, 10.5]}  # top left o'MCU
-        - {ref: thumb_home_home, shift: [-54, 10.5]}  # control point
-        - {ref: matrix_pinky_bottom, shift: [+.5u + 3.5, -.5u - 3.5]}  # almost
-        - {ref: matrix_pinky_bottom, shift: [+.5u, -.5u]}  # bottom right of it
-        - {ref: matrix_pinky_bottom, shift: [-.5u, -.5u]}  # bottom left of it
-        - {ref: matrix_outer_home, shift: [-.5u, -.5u]}  # diagonal cut \
-        - {ref: matrix_outer_top, shift: [-.5u, +.5u]}  # straight up
-        - {ref: matrix_pinky_num, shift: [-.5u, +.5u]}  # diagonal cut /
-        - {ref: matrix_pinky_num, shift: [+.0u, +1u]}  # diagonal cut / cont
-        - {ref: matrix_pinky_num, shift: [+.0u + 2.5, +1u + 2.5]}  #  / cont
-        # using pinky and outer exclusively helps with being 45 degrees,
-        # as they have no offset
-        - {ref: thumb_home_home, shift: [-59, 93]}  # control point
-        - {ref: thumb_home_home, shift: [ 10, 93]}  # top right of the PCB
+        - {ref: thumb_home_home, shift: [ hu, -hu]}  # bottom right of the PCB
+        - {ref: thumb_home_home, shift: [-32, -hu]}  # bottom left o'MCU
+        - {ref: thumb_home_home, shift: [-32,10.5]}  # top left o'MCU
+        - {ref: thumb_home_home, shift: [-54,10.5]}  # control point
+        - {ref: matrix_pinky_bottom, shift: [+hu, -hu - 4]}  # control point
+        - {ref: matrix_pinky_bottom, shift: [+hu, -hu]}  # pinky bottom right
+        - {ref: matrix_pinky_bottom, shift: [-hu, -hu]}  # pinky bottom left
+        - {ref: matrix_outer_home, shift: [+hu, -hu]}  # outer bottom right
+        - {ref: matrix_outer_home, shift: [-hu, -hu]}  # outer bottom left
+        - {ref: matrix_outer_top, shift: [-hu, +hu]}  # outer top left
+        - {ref: matrix_outer_top, shift: [+hu, +hu]}  # outer top right
+        - {ref: matrix_pinky_num, shift: [-hu, +hu]}  # pinky top left
+        - {ref: matrix_pinky_num, shift: [+hu, +hu]}  # pinky top right
+        - {ref: matrix_ring_num, shift: [-hu, +hu]}  # ring top left
+        - {ref: matrix_ring_num, shift: [+hu, +hu]}  # ring top right
+        - {ref: matrix_middle_num, shift: [-hu, +hu]}  # middle top left
+        - {ref: matrix_middle_num, shift: [+hu, +hu]}  # middle top right
+        - {ref: matrix_middle_num, shift: [-hu, +hu]}  # middle top left
+        - {ref: matrix_middle_num, shift: [+hu, +hu]}  # middle top right
+        - {ref: matrix_index_num, shift: [-hu, +hu]}  # index top left
+        - {ref: matrix_index_num, shift: [+hu, +hu]}  # index top right
+        - {ref: matrix_inner_num, shift: [-hu, +hu]}  # inner top left
+        - {ref: matrix_inner_num, shift: [+hu, +hu]}  # inner top right
   mounting:
     - what: circle  # ne
       radius: 3.2 / 2
@@ -260,12 +264,12 @@ outlines:
       radius: 3.2 / 2
       where:
         ref: matrix_outer_home
-        shift: [0, -.5u - 5]
+        shift: [0, -hu - 5]
     - what: circle  # nw
       radius: 3.2 / 2
       where:
         ref: matrix_outer_top
-        shift: [0, +.5u + 5]
+        shift: [0, +hu + 5]
     - what: circle  # se
       radius: 3.2 / 2
       where:
@@ -302,7 +306,7 @@ pcbs:
     footprints:
       keys_normal:
         what: ceoloide/switch_choc_v1_v2
-        where: /.*(pinky|ring|middle|index|thumb).*/
+        where: true
         params:
           from: "{{column_net}}"
           to: "{{colrow}}"
@@ -310,52 +314,27 @@ pcbs:
           keycap_width: 17
           keycap_height: 17
           reversible: true
-          hotswap: true  # weird rotations can be undone if that'd be toggled
-          include_plated_holes: true
-          solder: false
-          center_hole_diameter: 3.25  # 3.2 + .05
-          include_corner_marks: true
-          choc_v2_support: false
-          include_choc_v1_led_cutout_marks: true
-      keys_outer:
-        $extends: pcbs.seventeeen.footprints.keys_normal
-        where: /.*outer.*/
-        params:
           hotswap: false
           solder: true # let's have fun
+          include_plated_holes: true
+          center_hole_diameter: 3.25  # 3.2 + .05
           # files are patched for 0.06" ~= 1.52 mm solder holes to fit Mill-Max
           choc_v2_support: false
           choc_v1_stabilizers_diameter: 1.8  # 1.9 - .1
-        adjust.rotate: 180
-      keys_rotated_inner:
-        $extends: pcbs.seventeeen.footprints.keys_normal
-        where: /.*inner.*/
-        adjust.orient: 90
-      diode_outer:
-        what: ceoloide/diode_tht_sod123
-        where: /.*(outer).*/
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-          reversible: true
-          include_traces_vias: true
-          trace_distance: -1.1
-        adjust.shift: [0, 4.7]
+          include_choc_v1_led_cutout_marks: true
+          include_corner_marks: true
         adjust.rotate: 180
       diode_normal:
         what: ceoloide/diode_tht_sod123
-        where: /.*(pinky|ring|middle|index|thumb).*/
+        where: true
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
           reversible: true
           include_traces_vias: true
           trace_distance: -1.1
-        adjust.shift: [0, -4.7]
-      diode_rotated_inner:
-        $extends: pcbs.seventeeen.footprints.diode_normal
-        where: /.*inner.*/
-        adjust.orient: 90
+        adjust.shift: [0, 4.7]  # see footprint
+        adjust.rotate: 180
       seeed:
         what: ceoloide/seeed_xiao
         where: thumb_home_home
@@ -398,20 +377,36 @@ pcbs:
       battery_connector_1:
         what: ceoloide/battery_connector_jst_ph_2
         where: matrix_inner_bottom
-        adjust.shift: [-3.5, -12]
+        adjust.shift: [5.65, -12.5]  # same clearance to right as key plateds
         adjust.rotate: 270
         params.side: B  # not really, I just wanna swap polarity
         params.BAT_P: BAT_P
         params.BAT_N: GND
         # no need to make reversible if I can flip battery wires in connector
+      bat_hole_p_e:
+        what: ceoloide/mounting_hole_npth
+        where: matrix_inner_bottom
+        adjust.shift: [5.65 - 15, -12.5 + 1.75]
+        params:
+          hole_size: 2.75  # should enough for a single crimped battery cable
+          hole_drill: 2.75
+      bat_hole_g_e:
+        $extends: pcbs.seventeeen.footprints.bat_hole_p_e
+        adjust.shift: [5.65 - 15, -12.5 - 1.75]
+      bat_hole_p_w:
+        $extends: pcbs.seventeeen.footprints.bat_hole_p_e
+        adjust.shift: [5.65 - 29, -11]
+        params:
+          hole_size: 4  # crimped battery cable + one is in the hole
+          hole_drill: 4
       battery_connector_2:
         $extends: pcbs.seventeeen.footprints.battery_connector_1
         where: matrix_index_bottom
-        adjust.shift: [5.5, -11]
+        adjust.shift: [4, -11]
       power_switch:
         what: ceoloide/power_switch_smd_side
         where: matrix_ring_bottom
-        adjust.shift: [2, -19]
+        adjust.shift: [0, -19.5]
         adjust.rotate: 270
         params:
           reversible: true
@@ -419,59 +414,37 @@ pcbs:
           from: BAT_PS
           to: BAT_P
 
-      hat_hole_ne:
+      under_mcu_hole_sw:
         what: ceoloide/mounting_hole_npth
         where: thumb_home_home
-        adjust.shift: [mcu_dx + 12, mcu_dy + 8]
-      hat_hole_se:
-        $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [mcu_dx + 12, mcu_dy - 8]
-      hat_hole_nw:
-        $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [mcu_dx - 12, mcu_dy + 8]
-      hat_hole_sw:
-        $extends: pcbs.seventeeen.footprints.hat_hole_ne
-        adjust.shift: [mcu_dx - 12, mcu_dy - 8]
+        adjust.shift: [mcu_dx - 10.25, mcu_dy - 8]
+      under_mcu_hole_se:
+        $extends: pcbs.seventeeen.footprints.under_mcu_hole_sw
+        adjust.shift: [mcu_dx + 10.75, mcu_dy - 8]
 
-      spacer_holes_above:
-        where: /matrix_(outer_top|pinky_num|index_num|inner_num)/
-        what: ceoloide/mounting_hole_npth
-        adjust.shift: [0, +u/2 + 1]
-      spacer_holes_below:
-        where: /matrix_(outer_home|middle_bottom|inner_bottom)/
-        what: ceoloide/mounting_hole_npth
-        adjust.shift: [0, -u/2 - 1]
-      spacer_hole_below_thumb:
-        where: thumb_home_home
-        what: ceoloide/mounting_hole_npth
-        adjust.shift: [-u/2 - 1.5, -u/2 + 2]
-      spacer_hole_far_below:
-        where: matrix_ring_bottom
-        what: ceoloide/mounting_hole_npth
-        adjust.shift: [-5.5, -u/2 - 9.5]
-
-      mounting_hole_ne:
-        what: ceoloide/mounting_hole_npth
-        where: thumb_home_home
-        params:
-          hole_size: 3.2  # ~M3
-          hole_drill: 3.2  # ~M3
-        adjust.shift: [10 - 2.5, 93 - 2.5]
-      mounting_hole_sw:
-        where: matrix_outer_home
-        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
-        adjust.shift: [0, -.5u - 5]
-      mounting_hole_nw:
-        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
-        where: matrix_outer_top
-        adjust.shift: [0, +.5u + 5]
       mounting_hole_se:
-        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
-        adjust.shift: [10 - 2.5, -9 + 2.5]
-      mounting_hole_sw_extra:
-        where: matrix_ring_num
-        $extends: pcbs.seventeeen.footprints.mounting_hole_ne
-        adjust.shift: [-13.25, 8]
+        what: ceoloide/mounting_hole_npth
+        where: matrix_outer_top
+        adjust.shift: [hu, -hu]
+      mounting_hole_sw:
+        what: ceoloide/mounting_hole_npth
+        where: /matrix_(inner_num|inner_home)/
+        adjust.shift: [-hu, -hu]
+      stabilization_hole_sw:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: 1.1
+          hole_drill: 1.1
+        where: /matrix_(ring_num|index_home)/
+        adjust.shift: [-hu, -hu]
+      stabilization_hole_se:
+        $extends: pcbs.seventeeen.footprints.stabilization_hole_sw
+        where: /matrix_(pinky_home|middle_num)/
+        adjust.shift: [hu, -hu]
+      mounting_hole_power_switch:
+        what: ceoloide/mounting_hole_npth
+        where: matrix_ring_bottom
+        adjust.shift: [-6.75, -hu - 11]
 
       #battery_area:
       #  what: ceoloide/utility_filled_zone
@@ -483,14 +456,14 @@ pcbs:
 
       name_version:
         what: ceoloide/utility_text
-        where: matrix_index_num
+        where: matrix_middle_bottom
         params:
           text: 'seventeeen v0.3'
           reversible: true
-          width: 1.75
-          height: 1.75
+          width: 1.4
+          height: 1.4
         adjust:
-          shift: [u/2,u/2+5]
+          shift: [0,-hu-1]
 
       # MCU-tied routing: columns
       P7_route:  # thumb column
@@ -498,7 +471,7 @@ pcbs:
         params.width: 0.2
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
-        params.route: b(7.5,-7.5)(7.5,-6)(8.5,-5)(24,-5)
+        params.route: b(7.5,-7.5)(9,-6)(9,4.5)(10.5,6)(12.5,6)(14,7.5)(20,7.5)
         params.net: P7
       P6_route:  # num + thumb row
         what: ceoloide/utility_router
@@ -506,9 +479,9 @@ pcbs:
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
-          - 'f(7.5,7.5)(7.5,6.75)(9,5.25)(24,5.25)(25,6.25)'  # bends: 1.5 and 2
-          - 'f(25,6.25)(26,5.25)(34,5.25)(36,3.25)'
-          - 'f(36,3.25)(36,-70.25)(35,-71.25)(34,-71.25)(33,-72.25)'
+          - f(7.5,7.5)(7.5,-3)(9,-4.5)(20.75,-4.5)(22,-3.5)  # 1.5, diode
+          - f(22,-3.5)(23,-4.5)(25.5,-4.5)(27.5,-6.5)(27.5,-77.25)  # 2
+          - f(27.5,-77.25)(25.5,-79.25)(22,-79.25)  # 2
         params.net: P6
       P5_route:  # top row
         what: ceoloide/utility_router
@@ -516,8 +489,8 @@ pcbs:
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
-          - 'f(5,7.75)(5,6.75)(7,4.75)(34,4.75)(35.5,3.25)'  # bends: 2 and 1.5
-          - 'f(35.5,3.25)(35.5,-53.25)(34.5,-54.25)(34,-54.25)(33,-55.25)'
+          - f(5,7.5)(5,-3)(7,-5)(25.5,-5)(27,-6.5)(27,-60.75)  # 2 and 1.5
+          - f(27,-60.75)(25.5,-62.25)(22,-62.25)  # 1.5
         params.net: P5
       P4_route:  # home row
         what: ceoloide/utility_router
@@ -525,20 +498,20 @@ pcbs:
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
-          - 'f(2.5,7.5)(2.5,6.75)(5,4.25)(34,4.25)(35,3.25)'  # bends: 2.5 and 1
-          - 'f(35,3.25)(35,-36.25)(33,-38.25)'
-        params.net: P3
+          - f(2.5,7.5)(2.5,-3)(5,-5.5)(22,-5.5)  # bend: 2.5
+          - f(22,-5.5)(23,-6.5)(23,-42.5)(22,-43.5)(22,-45.5)  # bend: 1
+        params.net: P4
       P3_route:  # bottom row
         what: ceoloide/utility_router
         params.width: 0.2
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
-          - 'f(0,7.5)(0,6.75)(3,3.75)(34,3.75)(34.5,3.25)'  # bends: 3 and 0.5
-          - 'f(34.5,3.25)(34.5,-19.75)(33,-21.25)'
+          - f(0,7.5)(0,6.5)(1.5,5)(1.5,-3)(4.5,-6)(22,-6)(22.5,-6.5)
+          - f(22.5,-6.5)(22.5,-26)(22,-26.5)(22,-28.5)
         params.net: P3
 
-      # MCU-tied routing: P0 and P1 columns
+      # MCU-tied routing: P0-P2
       P0_route:
         what: ceoloide/utility_router
         params.width: 0.2
@@ -546,8 +519,9 @@ pcbs:
         adjust.shift: [mcu_dx, mcu_dy]
         params.net: P0
         params.routes:
-          - b(-7.5,3.5)(-7.5,1.5)(-8.5,0.5)(-9.25,0.5)
-          - b(-9.25,0.5)(-10.35,-0.6)(-10.35,-9)
+          - b(-7.5,3.5)(-7.5,1.5)(-8.5,0.5)(-9.25,0.5)(-10.35,-0.6)
+          - b(-10.35,-0.6)(-10.35,-10.75)(-11.25,-11.95)(-11.25,-14.5)
+          - b(-11.25,-14.5)(-11.75,-15)(-28,-15)
       P1_route:
         what: ceoloide/utility_router
         params.width: 0.2
@@ -556,7 +530,8 @@ pcbs:
         params.net: P1
         params.routes:
           - b(-5,3.25)(-5,0.75)(-6,-0.25)(-9,-0.25)(-9.15,-0.4)
-          - b(-9.15,-0.4)v(-10.1,-1.35)(-10.1,-10)
+          - b(-9.15,-0.4)v(-10.1,-1.35)(-10.1,-11.5)(-10.5,-12)v(-10.5,-14.5)
+          - b(-10.5,-14.5)(-11.5,-15.5)(-28,-15.5)
       P2_route:
         what: ceoloide/utility_router
         params.width: 0.2
@@ -565,36 +540,7 @@ pcbs:
         params.net: P2
         params.routes:
           - b(-2.5,3.25)(-2.5,0)(-3.5,-1)(-8.75,-1)(-9.85,-2.1)
-          - b(-9.85,-2.1)(-9.85,-13.6)(-11.25,-15)(-30,-15)(-31,-16)(-31,-21.5)
-          - b(-31,-21.5)(-30,-22.5)(-26.5,-22.5)(-25.5,-23.5)(-25.5,-30)
-
-      # MCU-tied routing: P8-P10 columns
-      P8_route:  # outer column
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: thumb_home_home
-        adjust.shift: [mcu_dx, mcu_dy]
-        params.net: P8
-        params.routes:
-          - f(5,-7.5)(4.5,-9)(5.5,-10)(14,-10)(15.5,-8.5)(25.5,-8.5)
-          - f(25.5,-8.5)(26.5,-9.5)(26.5,-13)(25.5,-14)
-      P9_route:  # index column
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: thumb_home_home
-        adjust.shift: [mcu_dx, mcu_dy]
-        params.net: P9
-        params.route:
-          f(2.5,-7.5)(2.5,-12)v(3.5,-13)(5,-13)(7.5,-13)(8.5,-14)(8.5,-23)
-      P10_route:  # index column
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: thumb_home_home
-        adjust.shift: [mcu_dx, mcu_dy]
-        params.net: P10
-        params.routes:
-          - f(0,-7.5)(0,-12)v(1,-13)(2,-13)(3,-14)(3,-23.5)(2,-24.5)
-          - b(2,-24.5)(-7.5,-24.5)(-8.5,-25.5)(-8.5,-32)
+          - b(-9.85,-2.1)(-9.85,-14.6)(-11.25,-16)(-28,-16)
 
       # MCU-tied routing: power
       BAT_PS_route:
@@ -604,8 +550,8 @@ pcbs:
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
           - b(-0.25,-2.75)(-1.5,-1.75)(-8.5,-1.75)(-9.15,-2.4)v(-9.25,-2.5)
-          - f(-9.25,-2.5)(-9.25,-10.25)(-9.25,-12)(-10.25,-13)(-18,-13)
-          - f(-18,-13)(-18,-11.75)v(-18,-13)
+          - f(-9.25,-2.5)(-9.25,-10.25)(-9.25,-12)(-10.25,-13)(-28.5,-13)
+          - f(-28.5,-13)(-28.5,-11.75)v(-28.5,-13)
         params.net: BAT_PS
       GND_route:
         what: ceoloide/utility_router
@@ -613,42 +559,26 @@ pcbs:
         where: thumb_home_home
         adjust.shift: [mcu_dx, mcu_dy]
         params.routes:
-          - b(-5,-3.5)(-6,-2.5)(-8.25,-2.5)(-9,-3.25)(-9,-10)
-          - b(-9,-10)(-8,-11)(24,-11)(25,-10)
+          - b(-5,-3.5)(-6,-2.5)(-8.25,-2.5)(-9,-3.25)(-9,-9)(-8,-10)
+          - b(-8,-10)(-2,-10)(-0.5,-11.5)(8.25,-11.5)(8.75,-11)(24,-11)(25,-10)
         params.net: GND
 
+      # switch-tied power routing
+      BAT_P_1_route:
+        what: ceoloide/utility_router
+        params.width: 0.25
+        where: matrix_ring_bottom
+        adjust.shift: [0, -19.5]  # power switch
+        params.routes:
+          - b(-0.75,-1.5)(0,-1.5)v(0.75,-1.5)(0.75,-2.75)(2,-4)(36.5,-4)
+          - f(36.5,-4)(38,-2.5)(39.5,-4)(52.5,-4)v(55,-4)v
+          - f(55,-4)(55.75,-4)(56.75,-3)(56.75,-1.25)
+
       # key-tied routing
-      diode_to_pad_normal_route:
+      key_diode_route:
         what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*(pinky|ring|middle|index).*/
-        params.route: 'b(2.5,4.75)(6.5,4.75)(7.5,3.75)(7.5,-3)'
-        params.net: "{{colrow}}"
-      diode_to_pad_column_route_up:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*(pinky|ring|middle|index)_(top|home|bottom).*/
-        params.route: 'b(-3,0)(-3,-23)'
-        params.net: "{{colrow}}"
-      # inner
-      inner_column_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /matrix_inner_(top|home|bottom)/
-        params.route:
-          b(-5.5,2.5)(-3.5,0.5)(-3.5,-0.5)(-1.5,-2.5)(-1.5,-6.25)v(-3,-7.75)
-        params.net: "{{col}}"
-      # thumb
-      diode_to_pad_thumb_route:
-        what: ceoloide/utility_router
-        where: thumb_home_home
-        params.width: 0.2
-        params.route: b(2.5,4.75)(2.5,-0.5)(3.5,-1.5)(7,-1.5)(9,-3.5)
-        params.net: "{{colrow}}"
-      # key-tied routing: outer column
-      outer_diode_route:
-        what: ceoloide/utility_router
-        where: /.*outer.*/
+        #where: /.*(outer|pinky|ring|middle|index|inner).*/
+        where: true
         params.width: 0.2
         params.net: "{{colrow}}"
         params.routes:
@@ -656,94 +586,86 @@ pcbs:
           - b(-2,-4.5)(-1.25,-4.5)(0,-3.25)(2.75,-3.25)(3.25,-2.75)  # right#1
           - b(3.25,-2.75)(3.25,2.75)(4.25,3.75)  # right#2
           - b(-4.5,3.75)(4.5,3.75)  # horizontal bridge
-      outer_home_column_route:
+      key_column_non_top_route:
         what: ceoloide/utility_router
-        where: matrix_outer_home
+        where: /matrix_(.*_(home|bottom)|(pinky|ring|middle|index|inner)_top)/
         params.width: 0.2
         params.net: "{{column_net}}"
         params.routes:
-          - 'b(0,6)(6,6)(7,5)(7,-7)(5.5,-8.5)(2.5,-8.5)(0,-11)'
-          - 'b(0,6)(-6,6)(-7,5)(-7,-7)(-5.5,-8.5)(-2.5,-8.5)(0,-11)'
-          - 'b(6,6)(8.5,8.5)'
-      diode_outer_to_pinky_row_route:
+          - b(0,6)(6,6)(7,5)(7,-7)(5.5,-8.5)(2.5,-8.5)(0,-11)
+          - b(0,6)(-6,6)(-7,5)(-7,-7)(-5.5,-8.5)(-2.5,-8.5)(0,-11)
+      key_row_route_most_normal:
         what: ceoloide/utility_router
-        where: /.*outer.*/
+        where: /matrix_(outer|index)_.*/
         params.width: 0.2
         params.net: "{{row_net}}"
-        params.route:
-          'f(2,-4.75)(2,4.75)(2,5.75)(3,6.75)(14,6.75)(15,5.75)(15,4.75)'
-      # key-tied routing: pinky column
-      diode_pinky_column_cont_route:
+        params.route: f(2,-4.5)(2,-5.5)(2.5,-6)(18.5,-6)(19,-5.5)(19,-4.5)
+      key_row_route_pinky_to_ring:
+        what: ceoloide/utility_router
+        where: /matrix_pinky_.*/
+        params.width: 0.2
+        params.net: "{{row_net}}"
+        params.routes:
+          - f(2,-4.5)(2,-5.5)(2.5,-6)(7.75,-6)(9.25,-7.5)(13,-7.5)
+          - f(13,-7.5)(14,-8.5)(14,-11)(15,-12)(18,-12)(19,-13)(19,-14)
+      key_row_route_ring_to_middle:
+        what: ceoloide/utility_router
+        where: /matrix_ring_.*/
+        params.width: 0.2
+        params.net: "{{row_net}}"
+        params.route: f(2,-4.75)(18,-4.75)(19,-5.75)(19,-6.5)
+      key_row_route_middle_to_index:
+        what: ceoloide/utility_router
+        where: /matrix_middle_.*/
+        params.width: 0.2
+        params.net: "{{row_net}}"
+        params.routes:
+          - f(2,-4.5)(2,-5.5)(2.5,-6)(6.25,-6)(7.25,-5)(7.25,5.5)
+          - f(7.25,5.5)(8.25,6.5)(18,6.5)(19,5.5)(19,4.5)
+      key_column_outer_route:
+        what: ceoloide/utility_router
+        where: matrix_outer_home
+        params.width: 0.2
+        params.net: P0
+        params.route: b(0,6)(1,7)(8,7)(9,8)
+      key_column_pinky_route:
+        what: ceoloide/utility_router
         where: matrix_pinky_bottom
-        $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
+        params.width: 0.2
         params.net: P1
-        params.route:
-          b(-3,0)(-3,6)(-2.5,6.5)(28,6.5)(29,7.5)(29,9)v(29.4,9.4)(29.4,11)
-      outer_column_cont_through_pinky_route:
+        params.route: b(0,6)(1,7)(7.5,7)(8.5,6)(20,6)
+      key_column_outer_through_pinky_route:
         what: ceoloide/utility_router
         where: matrix_pinky_bottom
         params.width: 0.2
         params.net: P0
+        params.route: b(-8.5,-9.5)(-7.5,-8.5)(-7.5,6)(-6,7.5)(7.5,7.5)(8.5,6.5)(20,6.5)
+      key_column_ring_route:
+        what: ceoloide/utility_router
+        where: matrix_ring_bottom
+        params.width: 0.2
+        params.net: P2
         params.routes:
-          - b(-8.5,-8.5)(-8,-8)(-8,6)(-7,7)(27.5,7)(28.15,7.75)(28.15,10.9)
-          - b(28.15,11)(29.15,12)
-      diode_from_pinky_towards_ring_route:
+          - b(0,6)(-1,7)(-8.5,7)(-9.5,8)(-9.5,13.5)(-8.5,14.5)
+          - b(-8.5,14.5)(3,14.5)
+      key_column_middle_route:
         what: ceoloide/utility_router
+        where: matrix_middle_bottom
         params.width: 0.2
-        where: /.*pinky.*/
+        params.net: P10
+        params.routes:
+          - b(0,6)(1,7)(7.5,7)(8.5,8)(8.5,14)(11,16.5)
+          - b(11,16.5)(13,16.5)(14,17.5)(14,20)v(14,23)
+      key_column_index_route:
+        what: ceoloide/utility_router
+        where: matrix_index_bottom
+        params.width: 0.2
+        params.net: P9
+        params.route: b(0,6)(0,7.25)(-0.25,7.5)(-0.25,11)v(-0.25,16)
+      key_column_inner_route:
+        what: ceoloide/utility_router
+        where: matrix_inner_bottom
+        params.width: 0.2
+        params.net: P8
         params.route:
-          'f(-2,4.75)(-2,3.75)(-1,2.75)(7.5,2.75)(8.5,1.75)(8.5,-1.25)'
-        params.net: "{{row}}"
-      # key-tied routing: ring column
-      diode_cont_pinky_to_ring_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*ring.*/
-        params.route: 'f(-8.5,7.75)(-7.5,6.75)(-3,6.75)(-2,5.75)(-2,4.75)'
-        params.net: "{{row}}"
-      diode_from_ring_to_middle_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*ring.*/
-        params.route: 'f(-2,4.75)(-2,3.75)(-1,2.75)(7.5,2.75)(15,2.75)'
-        params.net: "{{row}}"
-      # key-tied routing: middle column
-      diode_from_middle_to_index_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*middle.*/
-        params.route:
-          'f(-2,4.75)(-2,5.75)(-1,6.75)(7.5,6.75)(8.5,7.75)(8.5,10.75)'
-        params.net: "{{row}}"
-      # key-tied routing: index column
-      diode_cont_middle_to_index_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*index.*/
-        params.route: 'f(-8.5,1.75)(-7.5,2.75)(-3,2.75)(-2,3.75)(-2,4.75)'
-        params.net: "{{row}}"
-      # key-tied routing: inner column
-      diode_from_index_to_inner_route:
-        what: ceoloide/utility_router
-        params.width: 0.2
-        where: /.*index.*/
-        params.route: 'f(-2,4.75)(-2,3.75)(-1,2.75)(7.5,2.75)(21,2.75)(22,1.75)'
-        params.net: "{{row}}"
-      diode_to_pad_inner_route:
-        where: /.*(inner).*/
-        $extends: pcbs.seventeeen.footprints.diode_to_pad_normal_route
-        adjust.rotate: 90
-
-      # switch-tied power routing
-      BAT_P_1_route:
-        what: ceoloide/utility_router
-        params.width: 0.25
-        where: matrix_ring_bottom
-        adjust.shift: [2, -19]  # power switch
-        params.route:
-          b(-0.75,-1.5)(0,-1.5)v(0.75,-1.5)(0.75,-2.25)(2,-3.25)(36,-3.25)
-      BAT_P_2_route:
-        $extends: pcbs.seventeeen.footprints.BAT_P_1_route
-        where: matrix_ring_bottom
-        adjust.shift: [2, -19]  # power switch
-        params.route: f(36,-3.25)(37.5,-1.75)(44.5,-1.75)(45.25,-0.75)
+          b(0,6)(0,7.25)(-0.25,7.5)(-14,7.5)(-15,8.5)(-15,11)v(-15,16)

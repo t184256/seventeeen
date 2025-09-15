@@ -62,7 +62,12 @@
             "ERGOGEN_FOOTPRINTS=${ergogen-select-footprints}"
             "ERGOGEN=${pkgs.ergogen}/bin/ergogen"
             "KICAD_CLI=${pkgs.kicad}/bin/kicad-cli"
+            "DIFF=${pkgs.diffutils}/bin/diff"
+            "SED=${pkgs.gnused}/bin/sed"
+            "P7ZIP=${pkgs.p7zip}/bin/7z"
+            "STRIP_NONDETERMINISM=${pkgs.strip-nondeterminism}/bin/strip-nondeterminism"
             "TMPDIR=tmp"
+            "DESTDIR=${placeholder "out"}"
           ];
           enableParallelBuilding = true;
         };
@@ -70,7 +75,7 @@
       in
       {
         packages = { inherit seventeeen; };
-        defaultPackage = seventeeen;
+        packages.default = seventeeen;
 
         devShells.default = pkgs.mkShell {
           buildInputs = [];
@@ -80,6 +85,8 @@
             export ERGOGEN=${pkgs.ergogen}/bin/ergogen
             export KICAD=${pkgs.kicad}/bin/kicad
             export KICAD_CLI=${pkgs.kicad}/bin/kicad-cli
+            export P7ZIP=${pkgs.p7zip}/bin/7z
+            export STRIP_NONDETERMINISM=${pkgs.strip-nondeterminism}/bin/strip-nondeterminism
           '';
         };
       }

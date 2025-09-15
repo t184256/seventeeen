@@ -1,0 +1,19 @@
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(63.5000 mm, 25.7500 mm): Track [P5] on F.Cu, length 27.0000 mm | @(90.5000 mm, 26.2500 mm): Track [P6] on F.Cu, length 2.8284 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(61.5000 mm, 25.2500 mm): Track [P4] on F.Cu, length 29.0000 mm | @(90.5000 mm, 25.7500 mm): Track [P5] on F.Cu, length 2.1213 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(90.5000 mm, 26.2500 mm): Track [P6] on F.Cu, length 2.8284 mm | @(92.0000 mm, 24.2500 mm): Track [P5] on F.Cu, length 56.5000 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(59.5000 mm, 24.7500 mm): Track [P3] on F.Cu, length 31.0000 mm | @(90.5000 mm, 25.2500 mm): Track [P4] on F.Cu, length 1.4142 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(90.5000 mm, 25.7500 mm): Track [P5] on F.Cu, length 2.1213 mm | @(91.5000 mm, 24.2500 mm): Track [P4] on F.Cu, length 39.5000 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(90.5000 mm, 24.7500 mm): Track [P3] on F.Cu, length 0.7071 mm | @(90.5000 mm, 25.2500 mm): Track [P4] on F.Cu, length 1.4142 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1536 mm) | @(90.5000 mm, 25.2500 mm): Track [P4] on F.Cu, length 1.4142 mm | @(91.0000 mm, 24.2500 mm): Track [P3] on F.Cu, length 23.0000 mm
+[shorting_items]: Items shorting two nets (nets _1_0 and P0) | @(48.8800 mm, 25.7750 mm): Pad 0 [P0] of  on B.Cu | @(48.8800 mm, 26.6200 mm): Pad 0 [_1_0] of  on B.Cu
+[shorting_items]: Items shorting two nets (nets _1_13 and VCC) | @(48.8800 mm, 15.3800 mm): Pad 13 [_1_13] of  on B.Cu | @(48.8800 mm, 16.2250 mm): Pad 13 [VCC] of  on B.Cu
+[shorting_items]: Items shorting two nets (nets _1_1 and P1) | @(51.4200 mm, 25.7750 mm): Pad 1 [P1] of  on B.Cu | @(51.4200 mm, 26.6200 mm): Pad 1 [_1_1] of  on B.Cu
+[shorting_items]: Items shorting two nets (nets _1_12 and GND) | @(51.4200 mm, 15.3800 mm): Pad 12 [_1_12] of  on B.Cu | @(51.4200 mm, 16.2250 mm): Pad 12 [GND] of  on B.Cu
+[shorting_items]: Items shorting two nets (nets _1_2 and P2) | @(53.9600 mm, 25.7750 mm): Pad 2 [P2] of  on B.Cu | @(53.9600 mm, 26.6200 mm): Pad 2 [_1_2] of  on B.Cu
+[shorting_items]: Items shorting two nets (nets _1_11 and V3) | @(53.9600 mm, 15.3800 mm): Pad 11 [_1_11] of  on B.Cu | @(53.9600 mm, 16.2250 mm): Pad 11 [V3] of  on B.Cu
+[courtyards_overlap]: Courtyards overlap | @(73.5000 mm, 9.0000 mm): Footprint JST2 | @(81.5000 mm, 10.0000 mm): Footprint JST1
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.4525 mm) | @(91.1475 mm, 18.7500 mm): Pad 2 [home_home] of S17 on B.Cu | @(93.5000 mm, 31.5000 mm): Segment on Edge.Cuts
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.4750 mm) | @(29.0000 mm, 12.0000 mm): Segment on Edge.Cuts | @(39.6500 mm, 11.1250 mm): Pad [<no net>] of PWR1 on F.Cu
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.4750 mm) | @(29.0000 mm, 12.0000 mm): Segment on Edge.Cuts | @(32.3500 mm, 11.1250 mm): Pad [<no net>] of PWR1 on F.Cu
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.4750 mm) | @(29.0000 mm, 12.0000 mm): Segment on Edge.Cuts | @(39.6500 mm, 11.1250 mm): Pad [<no net>] of PWR1 on B.Cu
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.4750 mm) | @(29.0000 mm, 12.0000 mm): Segment on Edge.Cuts | @(32.3500 mm, 11.1250 mm): Pad [<no net>] of PWR1 on B.Cu

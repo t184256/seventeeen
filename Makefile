@@ -41,7 +41,8 @@ $(DRC): $(DESTDIR)/pcbs/seventeeen.kicad_pcb expected.drc.rpt
 	  tail -n-2 $$f | sort >> $$f.sorted; \
 	done
 	cat $(DESTDIR)/drc-tmp/split*.sorted | \
-	  $(SED) -z 's/\n    / | /g' > $@.differs
+	  $(SED) -z 's/\n    / | /g' | \
+	  sort > $@.differs
 	$(DIFF) -U0 $@.differs expected.drc.rpt
 	@mv $@.differs $@
 	@rm -r $(DESTDIR)/drc-tmp

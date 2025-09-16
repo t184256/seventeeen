@@ -62,6 +62,7 @@
             "ERGOGEN_FOOTPRINTS=${ergogen-select-footprints}"
             "ERGOGEN=${pkgs.ergogen}/bin/ergogen"
             "KICAD_CLI=${pkgs.kicad}/bin/kicad-cli"
+            "SED=${pkgs.gnused}/bin/sed"
             "TMPDIR=tmp"
           ];
           enableParallelBuilding = true;

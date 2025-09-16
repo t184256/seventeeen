@@ -458,7 +458,7 @@ pcbs:
         what: ceoloide/utility_text
         where: matrix_middle_bottom
         params:
-          text: 'seventeeen v0.3'
+          text: 'seventeeen v0.4'
           reversible: true
           width: 1.4
           height: 1.4

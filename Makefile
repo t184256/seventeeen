@@ -98,6 +98,7 @@ $(ONE_GERBER): $(DESTDIR)/pcbs/seventeeen.kicad_pcb $(DRC)
 	@mkdir -p $(DESTDIR)/tmp-grb $(DESTDIR)/fab
 	HOME=$$(realpath $(TMPDIR)) $(KICAD_CLI) pcb export gerbers \
 	  --layers B.Cu,B.Paste,B.SilkS,B.Mask,F.Mask,F.SilkS,F.Paste,F.Cu,Edge.Cuts \
+	  --subtract-soldermask \
 	  --output=$(DESTDIR)/tmp-grb \
 	  $<
 	ls $(DESTDIR)/tmp-grb
